@@ -16,7 +16,15 @@ Automated inputs are:
   * Submission title
   * Submission abstract
   * Submission session category (see below)
-* Uploaded prerecorded talks for accepted submissions, submitted via a Zenodo Communities link for the latest ESAMRConf
+* Uploaded prerecorded talks for accepted submissions, submitted via a Zenodo Communities link for the latest ESAMRConf  
+* Registration details from a Google Sheet, receiving inputs from a Google Form requesting participants information as follows:  
+  * Full name
+  * Email address
+  * Affiliation
+  * Time zone
+  * Primary country of residence (optional, on second page)
+  * Gender identity (optional, on second page)
+  * Ethnicity (optional, on second page)
 
 
 Manual inputs are:  

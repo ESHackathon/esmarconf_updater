@@ -24,3 +24,7 @@ description <- paste0('The Evidence Synthesis Hackathon’s online Evidence Synt
 talkLengthMinutes <- '15'
 IT_organiser <- list(name = 'Neal Haddaway', email = 'neal_haddaway@hotmail.com')
 YouTubeChannel_URL <- 'https://www.youtube.com/channel/UCZy7G3R6bk6AE6Vbfgc0Qhg'
+
+# Form source data
+absSubmissions <- 'https://docs.google.com/spreadsheets/d/1LF1XV6Ag-iwb5OjdG8dvRWzzOEYCqjKtHFZTajracIU/edit#gid=0'
+registrations <- 'https://docs.google.com/spreadsheets/d/1RaX0eDxbj6aJn8ySzfQwjGc0gHudXe8AiFK3dZjHdgo/edit#gid=1676716061'

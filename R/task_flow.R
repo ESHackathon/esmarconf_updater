@@ -23,8 +23,9 @@ digraph boxes_and_circles {
 graph
 
 
-# R tasks
-rmarkdown::render(Dminus0_registered)
+# Render all emails to their file directories
+blogdown::build_dir(dir = "Emails", force = TRUE)
+
 
 # Email task order and dates
 onAbsSubm_allSubmitting$date <- 'immediate'
@@ -35,9 +36,6 @@ onAbsSubmClosed_registered$date <- AbsSubmCloseDate
 onAbsSubmClosed_allSubmitting$date <- AbsSubmCloseDate
 onAbsDecision_allAccepted$date <- AbsDecisionMade
 onAbsDecision_allRejected$date <- AbsDecisionMade
-onBursDecision_allAccepted$date <- BursDecisionMade
-onBursDecision_allRejected$date <- BursDecisionMade
-onBursDecision_moreInfoNeeded$date <- BursDecisionMade
 Dminus56_allAbsAccepted$date <- ESMARConf_startDate - 56
 Dminus28_allAbsAccepted$date <- ESMARConf_startDate - 28
 Dminus28_registered$date <- ESMARConf_startDate - 28

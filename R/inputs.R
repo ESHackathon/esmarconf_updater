@@ -9,10 +9,9 @@ bursarySum <- '100 USD'
 # Date inputs needed
 startDate <- '2022/02/21'
 endDate <- '2022/02/24'
-AbsSubmOpenDate <- NULL
-AbsSubmCloseDate <- NULL
-AbsDecisionMade <- NULL
-BursDecisionMade <- NULL
+AbsSubmOpenDate <- '2021/08/01'
+AbsSubmCloseDate <- '2021/09/30'
+AbsDecisionMade <- '2021/10/17'
 
 # Set Conference dates
 Sys.setenv(TZ='GMT')

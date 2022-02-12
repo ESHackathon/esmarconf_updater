@@ -1,0 +1,22 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">One week to go until `r ESMARConfName`</span>  
+<br>
+
+Dear `r ESMARConfName` Participant,  
+
+`r ESMARConfName` begins in just one week! We have a packed programme of interesting talks and discussions for you, and we can't wait to get started! Why not make sure you're ready by subscribing to our dedicated YouTube Channel: <a href="`r YouTubeChannel_URL`">`r YouTubeChannel_URL`</a>  
+
+You will be able to watch the live stream, including questions and answers where time allows, or check out the individual talks, complete with verified and translatable subtitles. All talks in each session will be published at the session start. If you're planning on watching in <em>catch-up</em>, subtitles will be automatically added to the live streams within 24 hours, ans manually verified for translation as soon as possible after the event.  
+
+You can take part by asking questions to our presenters: be sure to check out the @ESHackathon Twitter feed and post your questions live as a reply to each presenter's dedicated Tweet.  
+
+Find out details about the programme and a host of other information on the ESMARConf website (<a href="https://esmarconf.github.io">https://esmarconf.github.io</a>), and by <a href="https://www.twitter.com/eshackathon">following the Evidence Synthesis Hackathon on Twitter @ESHackathon</a>.  
+
+Many thanks again - we can;t wait to see you at `r ESMARConfName`.  
+The `r ESMARConfName` Organising Team

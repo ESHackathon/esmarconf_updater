@@ -1,0 +1,20 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Bursary Reimbursement Reminder</span>  
+<br>
+
+Dear `r ESMARConfName` Bursary Awardee,  
+<br>
+
+Now that `r ESMARConfName` is over, we welcome you to please submit your reimbursement request via our page on the Open Collective website (<a href="https://opencollective.com/esmarconf">https://opencollective.com/esmarconf</a>) if you have not yet done so.  
+
+We will close our accounts for this year in a few weeks, so please ensure you submit your claim ASAP - we will be unable to reimburse claims that are submitted after our accounts close.  
+<br>
+
+Many thanks,  
+The `r ESMARConfName` Organising Team

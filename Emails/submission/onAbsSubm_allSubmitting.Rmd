@@ -1,0 +1,18 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Abstract Submission Received</span>  
+<br>
+
+Dear `r ESMARConfName` Presentation Applicant,  
+<br>
+
+Many thanks for your submission of an abstract to present at `r ESMARConfName` abstract submission portal is now closed. We will consider your submissions carefully and get back to you with a decision in due course.  
+<br>
+
+Many thanks for your time and effort - we hope very much to see you at `r ESMARConfName`.  
+The `r ESMARConfName` Organising Team

@@ -1,0 +1,22 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Bursary Application Receipt</span>  
+<br>
+
+Dear `r ESMARConfName` Bursary Applicant,  
+<br>
+
+Many thanks for your application for a bursary to support your attendance at `r ESMARConfName`. We have received your application and will consider it carefully in due course.  
+
+As soon as we have made a decision, we will let you know.  In the meantime, please let us know if you have any questions, comments, or concerns.  
+
+Thanks again so much for your interest in ESMARConf!
+<br>
+
+Many thanks,  
+The `r ESMARConfName` Organising Team

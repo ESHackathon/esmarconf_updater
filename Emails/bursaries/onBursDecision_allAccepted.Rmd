@@ -1,0 +1,28 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Bursary Application Decision</span>  
+<br>
+
+Dear `r ESMARConfName` Bursary Applicant,  
+<br>
+
+Many thanks for your application for a bursary to support your attendance at `r ESMARConfName`. <b>We’re delighted to say that we can now approve your application</b>. We’re really happy that this funding will go some way to help you attend `r ESMARConfName` and we hope you find the conference a positive experience.  
+
+In order to approve payment to a PayPal or bank/personal account, you will need to create an account with our fiscal sponsor, the Open Collective <a href="https://opencollective.com/esmarconf">https://opencollective.com/esmarconf</a>, and submit a ‘reimbursement’ claim (do not select ‘invoice’, which cannot be processed). Please follow the instructions here: <a href="https://opencollective.com/esmarconf/expenses/new">https://opencollective.com/esmarconf/expenses/new</a>.
+
+To submit a claim we need you to attach proof of payment for your requested sum. This must be a copy of receipts or paid invoices, or for carer payments, a short document outlining the individual costs. We will match your costs to your application and then process payment. We’ll reach out to you if we have any questions. Please ensure the amount claimed is no more than `r bursarySum` (even though your costs and invoice/receipt may show a higher value – `r bursarySum` is the maximum we can pay out.  
+
+Unfortunately, we can only process reimbursements after the event (`r format(ESMARConf_endDate, format="%B %d %Y")` onwards), but aim to process them immediately upon receipt. Please let us know if this could be a problem.  
+
+Please feel free to email if you have any questions or comments.  
+
+Thanks again so much for your interest in `r ESMARConfName` – we look forward to seeing you next month!  
+<br>
+
+Many thanks,  
+The `r ESMARConfName` Organising Team

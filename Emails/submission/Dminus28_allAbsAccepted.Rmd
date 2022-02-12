@@ -1,0 +1,37 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Instructions for Presenters</span>  
+<br>
+
+Dear `r ESMARConfName` Presenter,  
+<br>
+
+`r ESMARConfName` begins in 4 weeks and we are starting to get very excited! We have a really amazing programme of fascinating talks, and we're really excited to hear more about your work!
+
+ESMARConf is an entirely online event, and will be conducted as follows:  
+* Presenters are asked to pre-record their `r talkLengthMinutes`-minute presentation as a screen capture in whatever way they find easiest. This is primarily so that we can have time to add and verify subtitles to improve accessibility. It also helps in case we have difficulties connecting you on the day, or if your talk falls in an unfeasible time zone. We of course prefer you to present live and/or be present for Q&A, but understand that your talk may be scheduled at a time that does not work well for you. Let us know if you need support recording your talk. Quicktime, Powerpoint and Zoom all support relatively easy screen capturing - see the guides provided on the next page for tutorials.  
+* Presentations will take place via a closed Zoom call, attended only by the ESMARConf organisers and the presenters themselves.  
+* The Zoom meeting will be live streamed to YouTube so that everyone can see your presentation.  
+* Questions and comments can be submitted via Twitter.  
+* Livestream recordings will be archived on the Evidence Synthesis Hackathon YouTube channel for later access by the public.  
+* Interactive workshops will be held via dedicated Zoom calls for any registered participant: attendance details will be circulated via email.  
+
+To help us out, please send us a link to your recorded presentation no later than <b>`r format(ESMARConf_startDate - 7, "%A %B %d")`</b>!  
+
+Please remember to keep your presentations to `r talkLengthMinutes` minutes unless otherwise requested. This includes time for questions which has been scheduled at the end of all session talks in a dedicated panel discussion for those who are able to attend live. Please stay online in the Zoom presenters group until your session’s panel discussion has ended so that we can direct questions to you about your talks.  
+
+The following links may help you to record your presentation in your preferred software:  
+* In Powerpoint: <a href="https://www.panopto.com/blog/the-best-way-to-record-a-powerpoint-presentation/">https://www.panopto.com/blog/the-best-way-to-record-a-powerpoint-presentation/</a>  
+* In Quicktime (for Mac): <a href="https://u.osu.edu/chow.57/2013/11/18/record-powerpoint-w-quicktime-player-on-mac/">https://u.osu.edu/chow.57/2013/11/18/record-powerpoint-w-quicktime-player-on-mac/</a>  
+* In Zoom: <a href="https://www.ou.edu/cas-online/website/documents/Using%20Zoom%20to%20Record%20Presentations.pdf">https://www.ou.edu/cas-online/website/documents/Using%20Zoom%20to%20Record%20Presentations.pdf</a>  
+
+If you have any questions, comments, or concerns, please let us know. We also want to remind you of our Accessibility Policy, Code of Conduct, and Complaints/concerns Procedure, available here: <a href="https://www.eshackathon.org/about/accessibility_and_codeofconduct.html">https://www.eshackathon.org/about/accessibility_and_codeofconduct.html</a>.  
+<br>
+
+Many thanks for your time and effort,  
+The `r ESMARConfName` Organising Team

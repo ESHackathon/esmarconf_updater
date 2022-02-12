@@ -1,0 +1,22 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Begins Tomorrow</span>  
+<br>
+
+Dear `r ESMARConfName` Participant,  
+
+`r ESMARConfName` begins tomorrow - we are SO excited, and we are sure you are, too. We have a packed programme of interesting talks and discussions for you.  
+
+Join us tomorrow on our dedicated YouTube Channel: <a href="`r YouTubeChannel_URL`">`r YouTubeChannel_URL`</a>  
+
+You can watch the live stream, including questions and answers where time allows, or check out the individual talks, complete with verified and translatable subtitles. All talks in each session are published at the session start. If you're watching in <em>catch-up</em>, subtitles will be automatically added to the live streams within 24 hours, ans manually verified for translation as soon as possible after the event.  
+
+Take part by asking questions to our presenters: check out the @ESHackathon Twitter feed and post your questions as a reply to each presenter's dedicated Tweet.  
+
+Many thanks again - we look forward to seeing you at `r ESMARConfName`.  
+The `r ESMARConfName` Organising Team

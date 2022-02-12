@@ -1,0 +1,18 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">One month to go until `r ESMARConfName`</span>  
+<br>
+
+Dear `r ESMARConfName` Participant,  
+
+`r ESMARConfName` begins in a month and we're starting to get excited! We have a packed programme of interesting talks and discussions: why not make sure you don't miss anything by subscribing to our dedicated YouTube Channel: <a href="`r YouTubeChannel_URL`">`r YouTubeChannel_URL`</a>  
+
+We'll be sending through more details of the event and how to take part in the coming weeks. For now, check out the programme and information about ESMARConf on the event series website: <a href="https://esmarconf.github.io">https://esmarconf.github.io</a>.
+
+Many thanks again - we can;t wait to see you at `r ESMARConfName`.  
+The `r ESMARConfName` Organising Team

@@ -1,0 +1,23 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Abstract Submission Now Open</span>  
+<br>
+
+Dear `r ESMARConfName` Participant,  
+
+The `r ESMARConfName` abstract submission portal is now open! We would love to hear from you with topics that you might like to present. As always, we're interested in talks that address the following:  
+* Presentations of packages designed to assist reviewers across evidence synthesis stages, from planning to communication  
+* Demonstrations integrating evidence synthesis packages into an interoperable pipeline in R  
+* Novel applications of R packages in an evidence synthesis context  
+* Automating evidence synthesis in R  
+* Assisting novices to R in performing evidence syntheses with the aid of graphical user interfaces  
+
+You can find the abstract submission portal on the ESMARConf website here: <a href="https://esmarconf.github.io">https://esmarconf.github.io</a>.
+
+Many thanks,  
+The `r ESMARConfName` Organising Team

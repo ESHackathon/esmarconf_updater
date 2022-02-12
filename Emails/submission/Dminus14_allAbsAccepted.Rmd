@@ -1,0 +1,22 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` recording deadline in 1 week!</span>  
+<br>
+
+Dear `r ESMARConfName` Presenter,  
+<br>
+
+`r ESMARConfName` begins in 2 weeks and we will need you to send in your presentation recording in <b>1 week from today</b>!  
+
+Once you have sent us your recording it be uploaded to YouTube and subtitles added and verified. We realise this is an extra effort, but you are helping us to ensure that subtitling makes our event as accessible as possible, so we really appreciate your cooperation: thank you so much! Please let us know as soon as possible if you think this might be a problem and need some help.   
+
+If you have any questions, comments, or concerns, please let us know. We also want to remind you of our Accessibility Policy, Code of Conduct, and Complaints/concerns Procedure, available here: <a href="https://www.eshackathon.org/about/accessibility_and_codeofconduct.html">https://www.eshackathon.org/about/accessibility_and_codeofconduct.html</a>.  
+<br>
+
+Many thanks for your time and effort,  
+The `r ESMARConfName` Organising Team

@@ -1,0 +1,18 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Registration Received</span>  
+<br>
+
+Dear `r ESMARConfName` Participant,  
+
+We have received your registration for `r ESMARConfName` - many thanks for your interest! The event will take place online from `r format(ESMARConf_startDate, "%d")` to `r format(ESMARConf_endDate, "%d %B %Y")`. We will send you more details in due course.
+
+For now, you can keep up-to-date with the latest information about `r ESMARConfName` on the ESMARConf website here: <a href="https://esmarconf.github.io">https://esmarconf.github.io</a>.  
+
+Many thanks,  
+The `r ESMARConfName` Organising Team

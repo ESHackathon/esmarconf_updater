@@ -1,0 +1,22 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">`r ESMARConfName` Bursary Application - more information needed</span>  
+<br>
+
+Dear `r ESMARConfName` Bursary Applicant,  
+<br>
+
+Many thanks for your application for a bursary to support your attendance of `r ESMARConfName`. We would like to request some additional information from you to enable us to make a decision on your application. Please reply to this email with the information requested below. If we do not receive a reply we will be unable to process your application.  
+
+Information missing or incomplete:  
+<span style="color: #4fb4a8;">`r missingBursInfo`<span>
+<br>
+<br>
+
+Many thanks,  
+The `r ESMARConfName` Organising Team

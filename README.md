@@ -1,6 +1,6 @@
 # esmarconf_updater
 
-This repo is a set of R HTML files designed to automatically update the ESMARConf website annually and in the run up to each event. It takes as inputs presentation submissions from a Google Form, via a Google Sheet that should be screened for acceptance. It then builds a programme and automates contact with submitting authors, presenters, moderators and the organising team.
+This repo is a package designed to automatically update the ESMARConf website annually and in the run up to each event. It takes as inputs presentation submissions from a Google Form, via a Google Sheet that should be screened for acceptance. It then builds a programme and automates contact with submitting authors, presenters, moderators and the organising team.
 
 The funcitons also aim to accept uploaded prerecorded presentations and publish on Zenodo and YouTube (with an embargo), ready for trasncription/verification of (automatic) subtitles.
 

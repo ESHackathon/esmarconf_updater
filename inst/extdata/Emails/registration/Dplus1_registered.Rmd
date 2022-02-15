@@ -3,7 +3,11 @@ output: html_document
 ---
 ``` {r include = FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-source(here::here("R", "inputs.R"))
+data <- read.csv(here::here("outputs", "inputs.csv"))
+list_names <- unname(unlist(data[1]))
+values <- unname(unlist(data[2]))
+data <- setNames(as.list(values), list_names)
+attach(data)
 ```
 ### <span style="color: #4fb4a8;">Thank you `r ESMARConfName` Participants!</span>  
 <br>

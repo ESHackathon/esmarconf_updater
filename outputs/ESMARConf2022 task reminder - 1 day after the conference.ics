@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ical.marudot.com//iCal Event Maker
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:Europe/London
+LAST-MODIFIED:2022-02-15T015911Z
+TZURL:http://tzurl.org/zoneinfo-outlook/Europe/London
+X-LIC-LOCATION:Europe/London
+BEGIN:DAYLIGHT
+TZNAME:BST
+TZOFFSETFROM:+0000
+TZOFFSETTO:+0100
+DTSTART:19700329T010000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:GMT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0000
+DTSTART:19701025T020000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20220215T190205Z
+UID:1641927684572-17858@ical.marudot.com
+DTSTART;TZID=Europe/London:20220225T080000
+DTEND;TZID=Europe/London:20220225T170000
+SUMMARY:ESMARConf2022 task reminder: 1 day after the conference
+URL:https://esmarconf.github.io
+DESCRIPTION:1 day after the conference. Send emails: <a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/ESHackathon/esmarconf_updater/main/inst/extdata/Emails/bursaries/Dplus1_allBursAccepted.html">bursaries/Dplus1_allBursAccepted.html</a>; <a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/ESHackathon/esmarconf_updater/main/inst/extdata/Emails/bursaries/Dplus10_allBursAccepted.html">bursaries/Dplus10_allBursAccepted.html</a>; <a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/ESHackathon/esmarconf_updater/main/inst/extdata/Emails/registration/Dplus1_registered.html">registration/Dplus1_registered.html</a>; <a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/ESHackathon/esmarconf_updater/main/inst/extdata/Emails/submission/Dplus1_allAbsAccepted.html">submission/Dplus1_allAbsAccepted.html</a>
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

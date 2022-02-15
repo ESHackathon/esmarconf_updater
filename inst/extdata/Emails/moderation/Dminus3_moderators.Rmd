@@ -3,7 +3,11 @@ output: html_document
 ---
 ``` {r include = FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-source(here::here("R", "inputs.R"))
+data <- read.csv(here::here("outputs", "inputs.csv"))
+list_names <- unname(unlist(data[1]))
+values <- unname(unlist(data[2]))
+data <- setNames(as.list(values), list_names)
+attach(data)
 ```
 ### <span style="color: #4fb4a8;">`r ESMARConfName` Session Moderation</span>  
 <br>
@@ -13,22 +17,22 @@ Dear `r ESMARConfName` Moderators,
 First of all - many thanks indeed for agreeing to help moderate an `r ESMARConfName` session!  We have a packed programme, and your support means a lot. With just 3 days until `r ESMARConfName` begins, we just wanted to remind you of some information about moderation.  
 
 <em>Session Organisation</em>  
-`r ESMARConfName` is taking place from the `r format(ESMARConf_startDate, "%d")` to the `r format(ESMARConf_startDate, "%d %B")` online. Participants will be joining the conference through YouTube (watching individual pre-recorded talks and live streams) and Twitter (submitting questions).  
+`r ESMARConfName` is taking place from the `r format(as.Date(ESMARConf_startDate), "%d")` to the `r format(as.Date(ESMARConf_endDate), "%d %B")` online. Participants will be joining the conference through YouTube (watching individual pre-recorded talks and live streams) and Twitter (submitting questions).  
 
 <em>Software Setup</em>  
 Presenters will join a closed Zoom call, which will be live streamed to YouTube via the `r ESMARConfName` channel. Each presenter will choose to present live or have their pre-recording played. Some presenters may be present for Q&A, but some may not be able to attend.  
 
-<em>Recordings</em>
-`r IT_organiser$name` will arrange playback of pre-recordings for presenters who will not be presenting live. Please contact `r stringr::word(IT_organiser$name, 1)`(`r IT_organiser$email`).  
+<em>Recordings</em>  
+`r sub("; .*", "", IT_organiser)` will arrange playback of pre-recordings for presenters who will not be presenting live. Please contact `r stringr::word(sub("; .*", "", IT_organiser), 1)` (`r sub(".*; ", "", IT_organiser)`) if you have any questions.  
 
 <em>Moderator Tasks</em>  
-The IT system (the closed Zoom call and live stream to YouTube) will be set up and run by `r stringr::word(IT_organiser$name, 1)` , but as a moderator you will introduce the session and each speaker briefly.  
+The IT system (the closed Zoom call and live stream to YouTube) will be set up and run by `r stringr::word(sub("; .*", "", IT_organiser), 1)`, but as a moderator you will introduce the session and each speaker briefly.  
 
 You can start the session one minute before the advertised time in order to introduce the speakers, which must stay on time. In introducing the session, please be sure to state that questions can be submitted via Twitter by replying to each speaker’s dedicated Tweet from @ESHackathon that will be published the moment they begin (again, this is scheduled so vital that you keep to time).  
 
 In the interests of time, it is best to introduce people by name and with a brief summary of their title.  
 
-If individual speakers finish their presentations before their allotted `r talkLengthMinutes` minutes, you can open up to questions from Twitter. Checking the @ESHackathon feed is the best way to find the relevant tweet and its replies (<a href="https://www.twitter.com/eshackathon/">https://www.twitter.com/eshackathon/</a>). `r stringr::word(IT_organiser$name, 1)` will be present to help as needed.  
+If individual speakers finish their presentations before their allotted `r talkLengthMinutes` minutes, you can open up to questions from Twitter. Checking the @ESHackathon feed is the best way to find the relevant tweet and its replies (<a href="https://www.twitter.com/eshackathon/">https://www.twitter.com/eshackathon/</a>). `r stringr::word(sub("; .*", "", IT_organiser), 1)` will be present to help as needed.  
 
 Please don't hesitate to reach out if you have any questions or comments.  
 

@@ -3,7 +3,11 @@ output: html_document
 ---
 ``` {r include = FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-source(here::here("R", "inputs.R"))
+data <- read.csv(here::here("outputs", "inputs.csv"))
+list_names <- unname(unlist(data[1]))
+values <- unname(unlist(data[2]))
+data <- setNames(as.list(values), list_names)
+attach(data)
 ```
 ### <span style="color: #4fb4a8;">`r ESMARConfName` Instructions for Presenters</span>  
 <br>
@@ -21,7 +25,7 @@ ESMARConf is an entirely online event, and will be conducted as follows:
 * Livestream recordings will be archived on the Evidence Synthesis Hackathon YouTube channel for later access by the public.  
 * Interactive workshops will be held via dedicated Zoom calls for any registered participant: attendance details will be circulated via email.  
 
-To help us out, please send us a link to your recorded presentation no later than <b>`r format(ESMARConf_startDate - 7, "%A %B %d")`</b>!  
+To help us out, please send us a link to your recorded presentation no later than <b>`r format(as.Date(ESMARConf_startDate) - 7, "%A %B %d")`</b>!  
 
 Please remember to keep your presentations to r talkLengthMinutes` minutes unless otherwise requested. This includes time for questions which has been scheduled at the end of all session talks in a dedicated panel discussion for those who are able to attend live. Please stay online in the Zoom presenters group until your session’s panel discussion has ended so that we can direct questions to you about your talks.  
 

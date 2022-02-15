@@ -5,6 +5,8 @@
 #' 'set_values()', consisting of a list of named dates. 
 #' @return 
 #' @export
+#' @examples 
+#' dates <- get_taskflow(inputs)
 get_taskflow <- function(inputs) {
   
   # Get and set dates
@@ -22,14 +24,7 @@ get_taskflow <- function(inputs) {
   Dplus1 <- ESMARConf_endDate + 1
   Dplus10 <- ESMARConf_endDate + 10
   
-  #ESMARConf_startDate <- as.Date(startDate, tz="Europe/London")
-  #ESMARConf_endDate <- as.Date(endDate, tz="Europe/London")
-  AbsSubmOpen <- '2021/08/01'
-  AbsSubmClose <- '2021/09/30'
-  RegistrationOpen <- '2021/10/01'
-  AbsDecision <- '2021/10/17'
-  BursaryOpen <- '2021/11/01'
-  
+  # Assemble dates into dataframe with text for taskflow
   dates <- c(AbsSubmOpen=AbsSubmOpen,
              AbsSubmClose=AbsSubmClose,
              RegistrationOpen=RegistrationOpen,
@@ -46,7 +41,7 @@ get_taskflow <- function(inputs) {
              Dplus1=Dplus1,
              Dplus10=Dplus10)
   dates <- as.data.frame(dates)
-  dates <- tibble::rownames_to_column(t, "label")
+  dates <- tibble::rownames_to_column(dates, "label")
   dates$value <- c('Abstract submission opens',
                    'Abstract submission closes',
                    'Registration opens',
@@ -63,6 +58,7 @@ get_taskflow <- function(inputs) {
                    '1 day after the conference',
                    '10 days after the conference')
   dates <- dates[order(dates[2]),]
+  # Extract emails relevant to specific dates based on filenames
   get_emails <- function(dates){
     if(identical(grep(dates[1], list.files('inst/extdata/Emails', recursive = TRUE), value = TRUE), character(0)) == TRUE) {
        ''
@@ -73,71 +69,78 @@ get_taskflow <- function(inputs) {
   dates$emails <- apply(dates, 1, get_emails)
   fill <- function(dates){
     if(dates[4] != ''){
-      paste(dates[3], dates[4], sep = '. Send emails: ')
+      split <- unlist(stringr::str_split(dates[4], '; '))
+      text1 <- ''
+      for (i in 1:length(split)){
+        extra <- paste0('<a href="http://htmlpreview.github.io/?https://raw.githubusercontent.com/ESHackathon/esmarconf_updater/main/inst/extdata/Emails/', gsub('.Rmd', '.html', split[i]), '">', gsub('.Rmd', '.html', split[i]), '</a>')
+        if(text1 == ''){
+          text1 <- paste0(extra)
+        } else {
+          text1 <- paste0(text1, '; ', extra)
+        }
+      }
+      paste0(dates[3], '. Send emails: ', text1)
     } else {
       dates[3]
     }
   }
   dates$action <- apply(dates, 1, fill)
+  output <- dates
   
-  # Prepare email file links for rendering
-  # Select relevant files to render on a given date based on filename
-  email_list <- list.files('inst/extdata/Emails', recursive = TRUE)
-  # Emails on action
-  onRegistration_emails <- grep('onRegistration', email_list, value = TRUE)
-  onBursSubm_emails <- grep('onBursSubm', email_list, value = TRUE)
-  onAbsSubm_emails <- grep('onAbsSubm', email_list, value = TRUE)
-  onBursDecision_emails <- grep('onBursDecision', email_list, value = TRUE)
-  
-  # Emails on date
-  onAbsSubmOpen_emails <- grep('onAbsSubmOpen', email_list, value = TRUE)
-  onAbsSubmClosed_emails <- grep('onAbsSubmClosed', email_list, value = TRUE)
-  onAbsDecision_emails <- grep('onAbsDecision', email_list, value = TRUE)
-  Dminus42_emails <- grep('Dminus42', email_list, value = TRUE)
-  Dminus28_emails <- grep('Dminus28', email_list, value = TRUE)
-  Dminus14_emails <- grep('Dminus14', email_list, value = TRUE)
-  Dminus7_emails <- grep('Dminus7', email_list, value = TRUE)
-  Dminus3_emails <- grep('Dminus3', email_list, value = TRUE)
-  Dminus1_emails <- grep('Dminus1', email_list, value = TRUE)
-  Dminus0_emails <- grep('Dminus0', email_list, value = TRUE)
-  Dplus1_emails <- grep('Dplus1', email_list, value = TRUE)
-  Dplus10_emails <- grep('Dplus10', email_list, value = TRUE)
-  
-  
-  # Set up actions on dates
-  # Emails
-  
-  
-  
-  # Prepare timeline graphic
-  # build the dates text section
-  text <- ''
-  for (i in 1:length(dates)){
-    text <- paste0(text, i, " [label = '", dates[[i]], "'];\n")
+  # build the dates text section for the taskflow
+  text1 <- ''
+  for (i in 1:nrow(dates)){
+    text1 <- paste0(text1, '\n  <p><span id="rcorners2">', dates[i,2],'</span></p><br>')
+  }
+  text2 <- ''
+  for (i in 1:nrow(dates)){
+    text2 <- paste0(text2, '\n  <p><span id="rcorners2">', dates[i,5],'</span></p><br>')
   }
   
-  # Build graphiz plot
-  # Create the graph object
-  graph <- DiagrammeR::grViz(paste0("
-digraph boxes_and_circles {
-
-  # a 'graph' statement
-  graph [overlap = true, fontsize = 14]
-
-  # several 'node' statements
-  node [shape = box,
-        fontsize = 7,
-        fontname = Helvetica,
-        color = MediumTurquoise]
-  ", text, " 
-
-  # several 'edge' statements
-  edge [color = MediumTurquoise,  
-        style = filled]
-  1->2 2->3 3->4 4->5 5->6 6->7 7->8 8->9 9->10 10->11 11->12 12->13 13->14 14->15
-}
-"))
-  graph
+  # Build the taskflow graphic as an html file, including links to each rendered file
+  html <- paste0('<!DOCTYPE html>
+<html>
+ <head>
+   <style>
+     .row {
+        display: flex;
+      }
+      div {
+        column-gap: 20px;
+      }
+      .column1 .column2 {
+        flex: 50%;
+        padding: 10px;
+      }
+      .column1 {
+        text-align: right;
+      }
+      .column2 {
+        text-align: left;
+      }
+      #rcorners2 {
+        border-radius: 10px;
+        border: 2px solid #4fb4a8;
+        padding: 20px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <p>Once you have drafted (rendered) the emails, click on the links below to navigate to them.</p>
+    <div class="row">
+      <div class="column1">', text1, '
+      </div>
+      <div class="column2">', text2, '
+      </div>
+  </body>
+</html>')
+  
+  # Save the html output to the outputs folder
+  write(html, 'outputs/taskflow.html')
+  
+  return(output)
   
 }
 

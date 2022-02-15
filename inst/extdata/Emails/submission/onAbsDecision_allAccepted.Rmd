@@ -3,7 +3,11 @@ output: html_document
 ---
 ``` {r include = FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-source(here::here("R", "inputs.R"))
+data <- read.csv(here::here("outputs", "inputs.csv"))
+list_names <- unname(unlist(data[1]))
+values <- unname(unlist(data[2]))
+data <- setNames(as.list(values), list_names)
+attach(data)
 ```
 ### <span style="color: #4fb4a8;">`r ESMARConfName` Abstract Submission Decision</span>  
 <br>
@@ -14,7 +18,7 @@ Dear `r ESMARConfName` Presenter,
 We have now had time to carefully consider all of the applications for presentations at this year's ESMARConf. We are delighted to inform you that your submission has been accepted!  
 
 We will be following up with more information soon, but we would like to inform you of the following information:  
-* `r ESMARConfName` will take place from `r format(ESMARConf_startDate, "%d")` to `r format(ESMARConf_endDate, "%d %B %Y")`  
+* `r ESMARConfName` will take place from `r format(as.Date(ESMARConf_startDate), "%d")` to `r format(as.Date(ESMARConf_endDate), "%d %B %Y")`  
 * The conference takes place entirely online, accessed via a dedicated YouTube Channel  
 * You will have an allotted time of `r talkLengthMinutes` minutes for your presentation. This includes any time you may wish to answer questions. Your recording must not exceed `r talkLengthMinutes` minutes  
 * We ask that presentations be prerecorded and submitted 7 days before the conference to allow us to add and verify subtitles to individual talks. This is a vital step in making `r ESMARConfName` accessible, and we really appreciate your support  

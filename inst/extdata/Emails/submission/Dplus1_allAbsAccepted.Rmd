@@ -1,0 +1,20 @@
+---
+output: html_document
+---
+``` {r include = FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+source(here::here("R", "inputs.R"))
+```
+### <span style="color: #4fb4a8;">Thank you `r ESMARConfName` Presenters!</span>  
+<br>
+
+Dear `r ESMARConfName` Presenter,  
+<br>
+
+Thank you SO, SO much for presenting your work at `r ESMARConfName`! The conference was a great success, and we look forward to a lot more people engaging with the recordings in the coming months and years.  
+
+You can see your presentation on the YouTube Channel listed on the ESMARConf website: <a href="https://esmarconf.github.io">https://esmarconf.github.io</a>.  
+<br>
+
+Many thanks for your time and effort - see you next year!  
+The `r ESMARConfName` Organising Team

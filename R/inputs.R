@@ -6,17 +6,24 @@ missingBursInfo <- c('Full name', 'Affiliation')
 # Bursary details
 bursarySum <- '100 USD'
 
+# $dates
 # Date inputs needed
 startDate <- '2022/02/21'
 endDate <- '2022/02/24'
-AbsSubmOpenDate <- '2021/08/01'
-AbsSubmCloseDate <- '2021/09/30'
-AbsDecisionMade <- '2021/10/17'
+AbsSubmOpen <- '2021/08/01'
+AbsSubmClose <- '2021/09/30'
+RegistrationOpen <- '2021/10/01'
+AbsDecision <- '2021/10/17'
+BursaryOpen <- '2021/11/01'
 
-# Set Conference dates
-Sys.setenv(TZ='GMT')
+# Convert to time data
 ESMARConf_startDate <- as.Date(startDate, tz="Europe/London")
 ESMARConf_endDate <- as.Date(endDate, tz="Europe/London")
+RegistrationOpen <- as.Date(RegistrationOpen, tz="Europe/London")
+BursaryOpen <- as.Date(BursaryOpen, tz="Europe/London")
+AbsSubmOpen <- as.Date(AbsSubmOpen, tz="Europe/London")
+AbsSubmClose <- as.Date(AbsSubmClose, tz="Europe/London")
+AbsDecision <- as.Date(AbsDecision, tz="Europe/London")
 
 # ESMARConf information
 ESMARConfName <- 'ESMARConf2022'

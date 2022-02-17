@@ -16,7 +16,9 @@
 #'                      IT_organiser = list(name = 'Neal Haddaway', email = 'neal_haddaway@hotmail.com'),
 #'                      YouTubeChannel_URL = 'https://www.youtube.com/channel/UCZy7G3R6bk6AE6Vbfgc0Qhg',
 #'                      absSubmissions = 'https://docs.google.com/spreadsheets/d/1LF1XV6Ag-iwb5OjdG8dvRWzzOEYCqjKtHFZTajracIU/edit#gid=0',
-#'                      registrations = 'https://docs.google.com/spreadsheets/d/1RaX0eDxbj6aJn8ySzfQwjGc0gHudXe8AiFK3dZjHdgo/edit#gid=1676716061')
+#'                      bursary = '',
+#'                      registrations = 'https://docs.google.com/spreadsheets/d/1RaX0eDxbj6aJn8ySzfQwjGc0gHudXe8AiFK3dZjHdgo/edit#gid=1676716061',
+#'                      registration_form = 'https://forms.gle/QGjmquHsrFd3Hikk7')
 set_values <- function(startDate,
                        endDate,
                        AbsSubmOpen,
@@ -31,7 +33,9 @@ set_values <- function(startDate,
                        IT_organiser = NULL,
                        YouTubeChannel_URL = NULL,
                        absSubmissions = NULL,
-                       registrations = NULL) {
+                       bursary = NULL,
+                       registrations = NULL,
+                       registration_form = NULL) {
   
   # Convert to time data
   ESMARConf_startDate <- as.Date(startDate, tz="Europe/London")
@@ -59,8 +63,10 @@ set_values <- function(startDate,
                    talkLengthMinutes = talkLengthMinutes,
                    IT_organiser = IT_organiser,
                    YouTubeChannel_URL = YouTubeChannel_URL,
+                   bursary = bursary,
                    absSubmissions = absSubmissions,
-                   registrations = registrations)
+                   registrations = registrations,
+                   registration_form = registration_form)
   
   input_values <- unlist(c(startDate,
                            endDate,
@@ -75,8 +81,10 @@ set_values <- function(startDate,
                            talkLengthMinutes,
                            paste0(IT_organiser, collapse = '; '),
                            YouTubeChannel_URL,
+                           bursary,
                            absSubmissions,
-                           registrations))
+                           registrations,
+                           registration_form))
   input_names <- c('ESMARConf_startDate',
                    'ESMARConf_endDate',
                    'AbsSubmOpen',
@@ -90,8 +98,10 @@ set_values <- function(startDate,
                    'talkLengthMinutes',
                    'IT_organiser',
                    'YouTubeChannel_URL',
+                   'bursary',
                    'absSubmissions',
-                   'registrations')
+                   'registrations',
+                   'registration_form')
   inputs <- data.frame(label = input_names, values = input_values)
   write.csv(inputs, 'outputs/inputs.csv', row.names = FALSE)
   

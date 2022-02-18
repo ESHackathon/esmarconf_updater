@@ -26,7 +26,7 @@ import_data <- function(data = 'abstracts'){
   if(any(grepl(data, 'abstracts')) == TRUE){
     abstract_url <- maditr::vlookup('absSubmissions', dat, lookup_column = 'label')
     # Read in data
-    abstract_data <- list(abstract_data = googlesheets4::read_sheet(abstract_url))
+    abstract_data <- list(abstract_data = googlesheets4::read_sheet(abstract_url, sheet = 1))
     output <- append(output, abstract_data)
   }
   if(any(grepl(data, 'registration')) == TRUE){

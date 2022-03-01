@@ -8,7 +8,12 @@
 "BursaryOpen","18932"
 "bursarySum","100 USD"
 "ESMARConfName","ESMARConf2022"
-"description","The Evidence Synthesis Hackathon’s online Evidence Synthesis & Meta-Analysis in R Conference (#ESMARConf2022) will be held from 2022-02-21 to 2022-02-24. Following on form the great success of previous years, we can promise an exciting programme of sessions, workshops, and hackathons that address the following: ⊛ Presentations of packages designed to assist reviewers across evidence synthesis stages, from planning to communication; ⊛ Demonstrations integrating evidence synthesis packages into an interoperable pipeline in R; ⊛ Novel applications of R packages in an evidence synthesis context; ⊛ Automating evidence synthesis in R; ⊛ Assisting novices to R in performing evidence syntheses with the aid of graphical user interfaces"
+"description","The Evidence Synthesis Hackathon’s online Evidence Synthesis & Meta-Analysis in R Conference (#ESMARConf2022) was held from 21 to 24 February 2022. We saw an exciting programme of sessions and workshops that addressed the following: 
+⊛ Presentations of packages designed to assist reviewers across evidence synthesis stages, from planning to communication; 
+⊛ Demonstrations integrating evidence synthesis packages into an interoperable pipeline in R; 
+⊛ Novel applications of R packages in an evidence synthesis context; 
+⊛ Automating evidence synthesis in R; 
+⊛ Assisting novices to R in performing evidence syntheses with the aid of graphical user interfaces"
 "talkLengthMinutes","15"
 "IT_organiser","Neal Haddaway; neal_haddaway@hotmail.com"
 "YouTubeChannel_URL","https://www.youtube.com/channel/UCZy7G3R6bk6AE6Vbfgc0Qhg"

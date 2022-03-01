@@ -1,45 +1,64 @@
-#' Publish emails by rendering all .Rmd files in Emails folder
 #' 
-#' @description 
-#' @param inputs
-#' @return 
-#' @export
+#' @return Saves event site and tables for event sites to 'outputs' 
+#' folder. All four files and the images and assets folders need to be 
+#' transferred to a new event folder under the main ESMARConf website.
 #' @examples 
-#' publish_emails()
-publish_emails <- function(){
+#' \dontrun{
+#' ESMARConf2022_programme <- 'https://docs.google.com/spreadsheets/d/14TvSmlxznY7BRAM9L2rKbYwZGvYTaGSdwmtwElGz04M/edit#gid=0'
+#' update_pastEvent(ESMARConf2022_programme)
+#' }
+update_pastEvent <- function(presentations){
   
-  # Render all emails to their file directories
-  blogdown::build_dir(dir = "inst/extdata/Emails", force = TRUE)
+  # Read in abstract submissions
+  absSubmission_data <- googlesheets4::read_sheet(ESMARConf2021_programme)
+  # Tidy data
+  absSubmission_data$YouTube_URL <- paste0('<a href="', absSubmission_data$YouTube_URL, '" target="_blank"><img src="images/youtube.png" width="50"></a>')
+  absSubmission_data$title_abstract <- paste0('<b>', absSubmission_data$title, '</b><br><br>', absSubmission_data$abstract)
+  talks <- subset(absSubmission_data, type == 'talk')
+  workshops <- subset(absSubmission_data, type == 'workshop')
+  sessions <- subset(absSubmission_data, type == 'session')
+  
+  # Create table of accepted talks
+  new_data1 <- data.frame(name = talks$name, 
+                          title_abstract = talks$title_abstract, 
+                          activity = talks$activity, 
+                          category = talks$category, 
+                          YouTube = talks$YouTube_URL)
+  source('R/postEventTalks.R')
+  html1 <- dataframe2html(new_data1,
+                          tooltips = NULL,
+                          hyperlinks = 'TRUE',
+                          search_bar = TRUE)
+  write(html1, 'outputs/postEventTalks.html')
+  
+  # Create table of sessions
+  new_data2 <- data.frame(title = sessions$title,
+                          presenters = sessions$authors,
+                          moderator = sessions$name,
+                          YouTube = sessions$YouTube_URL)
+  source('R/postEventSessions.R')
+  html2 <- dataframe2html(new_data2,
+                          tooltips = NULL,
+                          hyperlinks = 'TRUE',
+                          search_bar = TRUE)
+  write(html2, 'outputs/postEventSessions.html')
+  
+  # Create table of workshops
+  workshops$authors <- tidyr::replace_na(workshops$authors, '')
+  new_data3 <- data.frame(title_abstract = workshops$title_abstract,
+                          presenter = workshops$name,
+                          guests = workshops$authors,
+                          YouTube = workshops$YouTube_URL)
+  source('R/postEventWorkshops.R')
+  html3 <- dataframe2html(new_data3,
+                          tooltips = NULL,
+                          hyperlinks = 'TRUE',
+                          search_bar = TRUE)
+  write(html3, 'outputs/postEventWorkshops.html')
+  
+  # Update event site
+  source('R/update_eventSite.R')
+  site <- update_eventSite()
+  write(site, paste0('outputs/', ESMARConfName, '.html'))
   
 }
-  
-
-
-
-
-
-# Read in abstract submissions
-absSubmission_data <- googlesheets4::read_sheet(absSubmissions)
-# Tidy data
-affiliation <- gsub('\n', '<br>', stringr::str_wrap(absSubmission_data$affiliation, width = 40))
-name <- paste0('<a href="mailto:', absSubmission_data$email, '">', absSubmission_data$name, '</a><br>', affiliation)
-absSubmission_data$TwitterHandle <- tidyr::replace_na(absSubmission_data$TwitterHandle, '')
-Twitter <- paste0('<a href="https://www.twitter.com/', gsub('@', '', absSubmission_data$TwitterHandle), '" target="_blank"><img src="images/twitter.png" width="50"></a>')
-citation <- paste0('<a href="https://www.doi.org/', gsub('@', '', absSubmission_data$DOI), '" target="_blank"><img src="images/zenodo.png" width="100"></a>')
-YouTube <- paste0('<a href="', absSubmission_data$YouTube_URL, '" target="_blank"><img src="images/youtube.png" width="50"></a>')
-title_abstract <- paste0('<b>', absSubmission_data$title, '</b><br><br>', absSubmission_data$abstract)
-new_data <- data.frame(Name = name, Twitter = Twitter, Talk = title_abstract, Watch = YouTube, Zenodo = citation)
-# Create table of accepted talks
-source('R/dataframe2html.R')
-html <- dataframe2html(new_data,
-                       tooltips = NULL,
-                       hyperlinks = 'TRUE',
-                       search_bar = TRUE)
-
-
-
-# Read in registration data
-registration_data <- googlesheets4::read_sheet(registrations)
-
-
-

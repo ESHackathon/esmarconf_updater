@@ -100,7 +100,30 @@ dataframe2html <- function(data,
                        hoverbg_colour,
                        ';\n }\n\n',
                        other_CSS,
-                       '</style>\n \t\n </head>\n <body onload="myFunction1(); myFunction2(); myFunction3(); myFunction4()">\n \t<span id="selection" style="color:',
+                       '#overlay {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    #text2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+    }
+                       </style>\n \t\n </head>\n <body onload="myFunction1(); myFunction2(); myFunction3(); myFunction4()">\n \t<span id="selection" style="color:',
                        emphasisfont_colour,
                        '"></span></p>\n
                        <label for="myInput1" class="titletext">Search presenter\'s name: </label><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Presenter\'s name"><br><br>
@@ -243,6 +266,15 @@ dataframe2html <- function(data,
     }
   }
 }
+</script>
+  <script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
 </script>\n
 </body>\n</html>\n'
   
@@ -301,7 +333,6 @@ dataframe2html <- function(data,
         sep = ''
         )
   
-  write(output, 'outputs/postEvent_talksTable.html')
   return(output)
 }
 

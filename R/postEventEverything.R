@@ -90,7 +90,7 @@ dataframe2html <- function(data,
                        tablefont_size,
                        ';\n \twidth: ',
                        table_width,
-                       ';\n \tword-wrap: break-word;\n }\n \n th.title_abstract{width: 50%;}\n \n th.name, th.session, th.activity, th.category{\n \twidth: 10%;\n}\n \n th.YouTube{\n \t text-align: center;\n \twidth: 5%;\n}\n \n th {\n \tposition:sticky;\n \tpadding:5px;\n \ttop:0px;\n \tbackground:',
+                       ';\n \tword-wrap: break-word;\n }\n \n th.title_abstract{width: 35%;}\n \n th.session, th.type, th.year {\n \twidth: 7.5%;\n}\n \n th.name {\n \twidth: 10%;\n}\n \n th.activity, th.category {\n \twidth: 12.5%;\n}\n \n th.YouTube{\n \t text-align: center;\n \twidth: 7.5%;\n}\n \n th {\n \tposition:sticky;\n \tpadding:5px;\n \ttop:0px;\n \tbackground:',
                        theadbg_colour,
                        ';\n \tcolor:',
                        theadtext_colour,
@@ -100,7 +100,30 @@ dataframe2html <- function(data,
                        hoverbg_colour,
                        ';\n }\n\n',
                        other_CSS,
-                       '</style>\n \t\n </head>\n <body onload="myFunction1(); myFunction2(); myFunction3(); myFunction4()">\n \t<span id="selection" style="color:',
+                       '#overlay {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    #text2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+    }
+                       </style>\n \t\n </head>\n <body onload="myFunction1(); myFunction2(); myFunction3(); myFunction4(); myFunction5()">\n \t<span id="selection" style="color:',
                        emphasisfont_colour,
                        '"></span></p>\n
                        <label for="myInput1" class="titletext">Search presenter\'s name: </label><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Presenter\'s name"><br><br>
@@ -145,6 +168,14 @@ dataframe2html <- function(data,
     <option value="Template (e.g. HTML web page or markdown file)">Template (e.g. HTML web page or markdown file)</option>
     <option value="Other">Other</option>
   </select>
+  <br><br>
+  <label for="myInput5" class="titletext">Select a presentation type: </label>
+  <select id="myInput5" name="myInput5" oninput="myFunction5()" >
+    <option value="" selected>All</option>
+    <option value="talk" selected>Talk</option>
+    <option value="workshop" selected>Workshop</option>
+    <option value="session" selected>Full session livestream</option>
+  </select>
 <br><br>\n',
                        sep = '')
   htmltrailing <- '<script>
@@ -154,6 +185,7 @@ dataframe2html <- function(data,
   document.getElementById("myInput2").value="";
   document.getElementById("myInput3").value="";
   document.getElementById("myInput4").value="";
+  document.getElementById("myInput5").value="";
   input = document.getElementById("myInput1");
   filter = input.value.toUpperCase();
   table = document.getElementById("table_id");
@@ -178,6 +210,7 @@ dataframe2html <- function(data,
   document.getElementById("myInput1").value="";
   document.getElementById("myInput3").value="";
   document.getElementById("myInput4").value="";
+  document.getElementById("myInput5").value="";
   input = document.getElementById("myInput2");
   filter = input.value.toUpperCase();
   table = document.getElementById("table_id");
@@ -202,6 +235,7 @@ dataframe2html <- function(data,
   document.getElementById("myInput1").value="";
   document.getElementById("myInput2").value="";
   document.getElementById("myInput4").value="";
+  document.getElementById("myInput5").value="";
   input = document.getElementById("myInput3");
   filter = input.value.toUpperCase();
   table = document.getElementById("table_id");
@@ -226,6 +260,7 @@ dataframe2html <- function(data,
   document.getElementById("myInput1").value="";
   document.getElementById("myInput2").value="";
   document.getElementById("myInput3").value="";
+  document.getElementById("myInput5").value="";
   input = document.getElementById("myInput4");
   filter = input.value.toUpperCase();
   table = document.getElementById("table_id");
@@ -242,6 +277,40 @@ dataframe2html <- function(data,
       }
     }
   }
+}
+</script>
+<script>function myFunction5() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  document.getElementById("myInput1").value="";
+  document.getElementById("myInput2").value="";
+  document.getElementById("myInput3").value="";
+  document.getElementById("myInput4").value="";
+  input = document.getElementById("myInput5");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+  <script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
 }
 </script>\n
 </body>\n</html>\n'
@@ -301,7 +370,6 @@ dataframe2html <- function(data,
         sep = ''
         )
   
-  write(output, 'outputs/postEvent_talksTable.html')
   return(output)
 }
 

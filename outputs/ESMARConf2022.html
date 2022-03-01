@@ -1,37 +1,4 @@
-#' Update ESMARConf event page
-#' 
-#' @description 
-#' @param 
-#' @return 
-#' @export
-#' @examples 
-#' site <- update_eventSite()
-update_eventSite <- function(google_analytics = ''){
-  
-  dat <- read.csv(here::here("outputs", "inputs.csv"))
-  ESMARConfName <- maditr::vlookup('ESMARConfName', dat, lookup_column = 'label')
-  ESMARConf_startDate <- maditr::vlookup('ESMARConf_startDate', dat, lookup_column = 'label')
-  ESMARConf_endDate <- maditr::vlookup('ESMARConf_endDate', dat, lookup_column = 'label')
-  description <- maditr::vlookup('description', dat, lookup_column = 'label')
-  YouTubeChannel_URL <- maditr::vlookup('YouTubeChannel_URL', dat, lookup_column = 'label')
-  registration_form <- maditr::vlookup('registration_form', dat, lookup_column = 'label')
-  team_dat <- read.csv(here::here("outputs", "team.csv"))
-  team <- team_dat$team
-  bios <- team_dat$bios
-  links <- team_dat$team_links
-  
-  team_html <- paste0(paste0('<div class="row section-padding">
-\t<div class="col-3">
-\t\t<img src="assets/img/team/', tolower(stringr::word(team, 1)), '.jpg" width="200px">
-\t</div>
-\t<div class="col-9">
-\t\t<h5>', team, '</h5>
-\t\t<p>', bios, '</p>
-\t\t<br><p><a href="', links, '" target="_blank">Read more here</a></p>
-\t</div>
-</div>'), collapse = '\n\n')
-  
-  html <- paste0('<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -39,8 +6,13 @@ update_eventSite <- function(google_analytics = ''){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- SEO tags -->
-    <meta name="title" content=', ESMARConfName, '>
-    <meta name="description" content=', description, '>
+    <meta name="title" content=ESMARConf2022>
+    <meta name="description" content=The Evidence Synthesis Hackathon’s online Evidence Synthesis & Meta-Analysis in R Conference (#ESMARConf2022) was held from 21 to 24 February 2022. We saw an exciting programme of sessions and workshops that addressed the following: 
+⊛ Presentations of packages designed to assist reviewers across evidence synthesis stages, from planning to communication; 
+⊛ Demonstrations integrating evidence synthesis packages into an interoperable pipeline in R; 
+⊛ Novel applications of R packages in an evidence synthesis context; 
+⊛ Automating evidence synthesis in R; 
+⊛ Assisting novices to R in performing evidence syntheses with the aid of graphical user interfaces>
     <meta name="keywords" content="evidence synthesis, meta-analysis, systematic review, R, Rstats R stats, R language, review tools, systematic review tools, machine learning, review automation, systematic review software, automated systematic reviews, systematic review efficiency, scoping review, rapid review, screening, evidence synthesis hackathon, eshackathon, hackathon">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -48,14 +20,19 @@ update_eventSite <- function(google_analytics = ''){
     <meta name="author" content="Neal R Haddaway">
     
     <!-- Open Graph/Twitter tags -->
-    <meta property="og:title" content=', ESMARConfName, '>
+    <meta property="og:title" content=ESMARConf2022>
     <meta property="og:type" content="article" />
-    <meta property="og:description" content=', description, '>
+    <meta property="og:description" content=The Evidence Synthesis Hackathon’s online Evidence Synthesis & Meta-Analysis in R Conference (#ESMARConf2022) was held from 21 to 24 February 2022. We saw an exciting programme of sessions and workshops that addressed the following: 
+⊛ Presentations of packages designed to assist reviewers across evidence synthesis stages, from planning to communication; 
+⊛ Demonstrations integrating evidence synthesis packages into an interoperable pipeline in R; 
+⊛ Novel applications of R packages in an evidence synthesis context; 
+⊛ Automating evidence synthesis in R; 
+⊛ Assisting novices to R in performing evidence syntheses with the aid of graphical user interfaces>
     <meta property="og:image" content="https://raw.githubusercontent.com/ESHackathon/eshackathon.github.io/master/assets/images/events/ESMARConfwebsite.png">
-    <meta property="og:url" content=', paste0("https://esmarconf.github.io/events/", ESMARConfName, ".html"), '>
+    <meta property="og:url" content=https://esmarconf.github.io/events/ESMARConf2022.html>
     <meta name="twitter:card" content="summary_large_image">
 
-    <title>', paste0(ESMARConfName, " - Evidence Synthesis and Meta-Analysis in R Conference ", substr(ESMARConfName, 10, 13)), '</title>
+    <title>ESMARConf2022 - Evidence Synthesis and Meta-Analysis in R Conference 2022</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
@@ -72,7 +49,7 @@ update_eventSite <- function(google_analytics = ''){
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
     
-    ', google_analytics,'
+    
 
   </head>
   <body>
@@ -156,23 +133,23 @@ update_eventSite <- function(google_analytics = ''){
           <div class="carousel-item">
             <img class="d-block w-100" src="assets/img/slider/slide1.png" alt="First slide">
             <div class="carousel-caption d-md-block">
-              <p class="fadeInUp wow" data-wow-delay=".6s">Evidence Synthesis and Meta-Analysis in R Conference ', substr(ESMARConfName, 10, 13), '</p>
-              <h1 class="wow bounceIn heading" data-wow-delay=".7s">', ESMARConfName, '</h1>
+              <p class="fadeInUp wow" data-wow-delay=".6s">Evidence Synthesis and Meta-Analysis in R Conference 2022</p>
+              <h1 class="wow bounceIn heading" data-wow-delay=".7s">ESMARConf2022</h1>
               <a href="#about" class="fadeInUp wow btn btn-border btn-lg">Learn more</a>
             </div>
           </div>
           <div class="carousel-item active">
             <img class="d-block w-100" src="assets/img/slider/slide2.jpg" alt="Second slide">
             <div class="carousel-caption d-md-block">
-              <p class="fadeInUp wow" data-wow-delay=".6s">', paste0(format(as.Date(ESMARConf_startDate), "%d"), ' to ', format(as.Date(ESMARConf_endDate), "%d %B %Y")), '</p>
-              <h1 class="wow fadeInDown heading" data-wow-delay=".4s">Check out the ', ESMARConfName, ' presentations and workshops online</h1>
+              <p class="fadeInUp wow" data-wow-delay=".6s">21 to 24 February 2022</p>
+              <h1 class="wow fadeInDown heading" data-wow-delay=".4s">Check out the ESMARConf2022 presentations and workshops online</h1>
               <a href="#recordings" class="fadeInLeft wow btn btn-common btn-lg" target="_blank">To the recordings</a>
             </div>
           </div>
           <div class="carousel-item">
             <img class="d-block w-100" src="assets/img/slider/slide3.jpg" alt="Third slide">
             <div class="carousel-caption d-md-block">
-              <p class="fadeInUp wow" data-wow-delay=".6s">Find out more about the ', ESMARConfName, '</p>
+              <p class="fadeInUp wow" data-wow-delay=".6s">Find out more about the ESMARConf2022</p>
               <h1 class="wow fadeInUp heading" data-wow-delay=".6s">Organising Team</h1>
               <a href="#team" class="fadeInUp wow btn btn-common btn-lg" target="_blank">Meet the team</a>
             </div>
@@ -198,8 +175,18 @@ update_eventSite <- function(google_analytics = ''){
             <br>
             <br>
             <br>
-              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">#', ESMARConfName, '</h1>
-              <p class="wow fadeInDown" data-wow-delay="0.2s">', gsub("⊛ ", "\n⊛ ", description), '<br><br>ESMARConf was established in 2020 and is coordinated by the <a href="https://www.eshackathon.org" target="_blank">Evidence Synthesis Hackathon</a>.</p>
+              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">#ESMARConf2022</h1>
+              <p class="wow fadeInDown" data-wow-delay="0.2s">The Evidence Synthesis Hackathon’s online Evidence Synthesis & Meta-Analysis in R Conference (#ESMARConf2022) was held from 21 to 24 February 2022. We saw an exciting programme of sessions and workshops that addressed the following: 
+
+⊛ Presentations of packages designed to assist reviewers across evidence synthesis stages, from planning to communication; 
+
+⊛ Demonstrations integrating evidence synthesis packages into an interoperable pipeline in R; 
+
+⊛ Novel applications of R packages in an evidence synthesis context; 
+
+⊛ Automating evidence synthesis in R; 
+
+⊛ Assisting novices to R in performing evidence syntheses with the aid of graphical user interfaces<br><br>ESMARConf was established in 2020 and is coordinated by the <a href="https://www.eshackathon.org" target="_blank">Evidence Synthesis Hackathon</a>.</p>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
               <br><br>
@@ -255,14 +242,14 @@ update_eventSite <- function(google_analytics = ''){
             <div class="counter wow fadeInRight" data-wow-delay="0.3s">
               <div class="icon"><i class="lni-map"></i></div>
               <p>Streamed live to</p>
-              <a href="', YouTubeChannel_URL, '" target="_blank">YouTube</a>
+              <a href="https://www.youtube.com/channel/UCZy7G3R6bk6AE6Vbfgc0Qhg" target="_blank">YouTube</a>
             </div>
           </div>
           <!-- Counter Item -->
           <div class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center">
             <div class="counter wow fadeInRight" data-wow-delay="0.6s">
               <div class="icon"><i class="lni-timer"></i></div>
-              <p>', paste0(format(as.Date(ESMARConf_startDate), "%d"), ' to ', format(as.Date(ESMARConf_endDate), "%d %B %Y")), '</p>
+              <p>21 to 24 February 2022</p>
             </div>
           </div>
           <!-- Counter Item -->
@@ -284,24 +271,24 @@ update_eventSite <- function(google_analytics = ''){
         <div class="row">
           <div class="col-12">
             <div class="section-title-header text-center">
-              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">#', ESMARConfName, '</h1>
+              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">#ESMARConf2022</h1>
               <p class="wow fadeInDown" data-wow-delay="0.2s">Check out the tables below to find and watch individual talks, session livestreams and workshops. All of our recordings will remain free on YouTube forever.</p>
               <br>
-              <p>Why not tell others about ', ESMARConfName, ' by Tweeting about the conference?<br><a href="https://twitter.com/intent/tweet?button_hashtag=', tolower(ESMARConfName), '&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-width="500" data-height="1000" data-show-count="false">Tweet #esmarconf2022</a></p>
+              <p>Why not tell others about ESMARConf2022 by Tweeting about the conference?<br><a href="https://twitter.com/intent/tweet?button_hashtag=esmarconf2022&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-width="500" data-height="1000" data-show-count="false">Tweet #esmarconf2022</a></p>
               <br>
               <br>
               <br>
-              <h1>', ESMARConfName, ' sessions</h1>
-              <iframe src="', ESMARConfName, '_sessions.html" width="100%" height="800" frameBorder="0"></iframe><br>
+              <h1>ESMARConf2022 sessions</h1>
+              <iframe src="ESMARConf2022_sessions.html" width="100%" height="800" frameBorder="0"></iframe><br>
               <br>
               <br>
               <br>
-              <h1>', ESMARConfName, ' individual talks</h1>
-              <iframe src="', ESMARConfName, '_talks.html" width="100%" height="1000" frameBorder="0"></iframe><br>
+              <h1>ESMARConf2022 individual talks</h1>
+              <iframe src="ESMARConf2022_talks.html" width="100%" height="1000" frameBorder="0"></iframe><br>
               <br>
               <br>
-              <h1>', ESMARConfName, ' workshops</h1>
-              <iframe src="', ESMARConfName, '_workshops.html" width="100%" height="1000" frameBorder="0"></iframe><br>
+              <h1>ESMARConf2022 workshops</h1>
+              <iframe src="ESMARConf2022_workshops.html" width="100%" height="1000" frameBorder="0"></iframe><br>
             </div>
           </div>
         </div>
@@ -315,14 +302,100 @@ update_eventSite <- function(google_analytics = ''){
         <div class="row">
           <div class="col-12">
             <div class="section-title-header text-center">
-              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Meet the #', ESMARConfName, ' Organising Team</h1>
-              <p class="wow fadeInDown" data-wow-delay="0.2s">This team of amazing people organised this year\'s event. </p>
+              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Meet the #ESMARConf2022 Organising Team</h1>
+              <p class="wow fadeInDown" data-wow-delay="0.2s">This team of amazing people organised this year's event. </p>
               <br>
             </div>
           </div>
         </div>
         
-        ', team_html, '
+        <div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/neal.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Neal Haddaway</h5>
+		<p>Neal is a Senior Research Fellow at the Stockholm Environment Institute. His main research interests are around the production and use of environmental evidence in decision-making, by improving the transparency, efficiency and reliability of evidence synthesis as a methodology. Neal is the co-creator of ESMARConf, and has produced several widely used web-based tools for evidence synthesis, including the <a href="https://estech.shinyapps.io/prisma_flowdiagram/" target="_blank">PRISMA2020 flow diagramme tool</a>, and <a href="https://estech.shinyapps.io/citationchaser" target="_blank">citationchaser</a>, for forwards and backwards citation chasing.</p>
+		<br><p><a href="https://sei.academia.edu/NealHaddaway" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/jana.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Jana Stojanova</h5>
+		<p>Jana is a primary investigator of the Interdisciplinary Centre for Health Studies (<a href="CIESAL" target="_blank">CIESAL</a>) and of the University of Valparaiso Cochrane Centre. She is Associate Professor of Pharmacology at the School of Medicine of the University of Valparaíso (part time) and works with the Learning Team at Cochrane (part time). Her primary research interests are study design and evidence synthesis methods for evaluating Therapeutic Drug Monitoring as an intervention. Jana is passionate about science communication, providing training in research methods, contributing to professional communities of practice and supporting early career professionals. She coordinates the monthly <a href="https://iatdmct.org/blog.html" target="_blank">IATDMCT</a> blog and the bimonthly Spanish Journal Club of the Cochrane Early Career Professionals (upcoming events <a href="https://www.cochrane.org/news/cochranes-early-career-professionals-group-upcoming-activities" target="_blank">here</a>).</p>
+		<br><p><a href="https://ciesal.uv.cl/en/investigador/jana-stojanova" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/emily.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Emily Hennessy</h5>
+		<p>Emily is a post-doctoral research associate at the University of Connecticut in the Systematic Health Action Research Program (SHARP) lab. She is an associate methods editor for the Campbell Collaboration and has served as a quality appraisal consultant for 3ie. Emily is interested in best practice methods for conducting evidence syntheses and issues related to bias, quality, and advanced modeling. Her substantive research focus is on adolescent health promotion and behavior change, specifically addressing substance use disorder prevention and recovery.</p>
+		<br><p><a href="https://sharp.uconn.edu/people/emily-alden-hennessy-phd/" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/ciara.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Ciara Keenan</h5>
+		<p>Ciara Keenan is a Research Fellow at Queen’s University Belfast with an established international reputation in evidence synthesis methodology. Systematic review projects have demonstrated her expertise in the intersections of health, social welfare, disability, and education. Prior to joining Campbell UK and Ireland, Ciara was employed by Kleijnen Systematic Reviews (KSR) to work on projects for the healthcare industry, two of which have informed NICE guidelines.</p>
+		<br><p><a href="https://www.ciarakeenan.com/" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/matt.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Matt Grainger</h5>
+		<p>Matt is a Post-doctoral Fellow at the Norwegian Institute for Nature Research. He works with Bayesian graphical models to contextualise scientific evidence for the benefit of decision makers in the realms of biodiversity conservation, sustainability and wildlife management. He is an expert in quantitative and qualitative data synthesis and dealing with high levels of uncertainty. He also has a side-line in the conservation of pheasants, predominately in Southeast Asia (which explains his twitter handle: <a href="https://www.twitter.com/Ed_pheasant" target="_blank">@Ed_pheasant</a>).</p>
+		<br><p><a href="https://twitter.com/Ed_pheasant" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/kyle.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Kyle Hamilton</h5>
+		<p>Kyle is a Ph.D. student at the University of California, Merced in the Psychological Science graduate program. His health psychology research explores perceptions of electronic cigarettes among adults and adolescents. Additionally, he also researches the relationship between adverse childhood experiences and facets of emotion regulation. Kyle has interests in quantitative methods, particularly meta-analysis and publication bias. He is the author of the R package <a href="https://github.com/kylehamilton/MAVIS" target="_blank">MAVIS</a> and the Jamovi module <a href="https://github.com/kylehamilton/MAJOR" target="_blank">MAJOR</a>.</p>
+		<br><p><a href="http://kylehamilton.com/" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/chris.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Chris Pritchard</h5>
+		<p>Chris is a Senior Lecturer at Nottingham Trent University. He is part of the Institute of Health and Allied Professions within the School of Social Sciences. Whilst his primary role is teaching, he is undertaking research on paramedic recognition and management of male victims of domestic violence. He also teaches on a research methods module within the undergraduate paramedicine curriculum. He has a professional interest in automation and using technology to improve efficiency and reproducibility of research.</p>
+		<br><p><a href="https://www.ntu.ac.uk/staff-profiles/social-sciences/chris-pritchard" target="_blank">Read more here</a></p>
+	</div>
+</div>
+
+<div class="row section-padding">
+	<div class="col-3">
+		<img src="assets/img/team/alex.jpg" width="200px">
+	</div>
+	<div class="col-9">
+		<h5>Alex Bannach-Brown</h5>
+		<p>Alexandra is a postdoc at the Berlin Institute of Health. She develops and implements machine learning and text-mining tools to aid the evidence synthesis research processes. Previous experience involves applying automation tools to systematic reviews of animal experiments to improve human health with large numbers of unique citations. She is passionate about reducing waste in biomedical research, improving reporting quality, and <a href="https://www.anzopenresearch.org/" target="_blank">open science practices</a> across medicine, biomedicine, and computer science.</p>
+		<br><p><a href="https://www.bihealth.org/en/translation/innovation-enabler/quest-center/teams/project-team-camarades" target="_blank">Read more here</a></p>
+	</div>
+</div>
 
     <!-- Go to Top Link -->
     <a href="#" class="back-to-top">
@@ -358,8 +431,4 @@ update_eventSite <- function(google_analytics = ''){
     <script src="assets/js/nivo-lightbox.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
-</html>')
-  
-  return(html)
-  
-}
+</html>

@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ 	
+	<meta name="viewport" content="width=device-width, initial-scale=2">
+ 	
+ 	<style type="text/css">
+ .titletext {
+ 	font-weight: 400;
+ 	font-family: sans-serif;
+ 	font-size: 16px;
+ }
+ 
+ table {
+ 	 table-layout: fixed;
+ 	font-weight: 400;
+ 	line-height: 1.5;
+ 	color: #212529;
+ 	font-family: sans-serif;
+ 	margin: 0px;
+ 	padding: 0px;
+ 	box-sizing: border-box;
+ 	margin-bottom: 110px;
+ 	background-color: #fff;
+ 	padding-top: 5px;
+ 	font-size: 14px;
+ 	width: 100%;
+ 	word-wrap: break-word;
+ }
+ 
+ th.title_abstract{width: 35%;}
+ 
+ th.session, th.type, th.year {
+ 	width: 7.5%;
+}
+ 
+ th.name {
+ 	width: 10%;
+}
+ 
+ th.activity, th.category {
+ 	width: 12.5%;
+}
+ 
+ th.YouTube{
+ 	 text-align: center;
+ 	width: 7.5%;
+}
+ 
+ th {
+ 	position:sticky;
+ 	padding:5px;
+ 	top:0px;
+ 	background:#4fb4a8;
+ 	color:#fff;
+ 	
+ }
+ 
+ td {
+ 	text-align: left;
+ 	padding: 20px;
+ }
+ 
+ tr {
+ 	border-bottom: 1px solid #ddd;
+ }
+ 
+ tr.header, tr:hover {
+ 	background-color: #cfece9;
+ }
+
+#overlay {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    #text2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+    }
+                       </style>
+ 	
+ </head>
+ <body onload="myFunction1(); myFunction2(); myFunction3(); myFunction4(); myFunction5()">
+ 	<span id="selection" style="color:#938D69"></span></p>
+
+                       <label for="myInput1" class="titletext">Search presenter's name: </label><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Presenter's name"><br><br>
+                       <label for="myInput2" class="titletext">Search title and abstract: </label><input type="text" id="myInput2" onkeyup="myFunction2()" placeholder="Title/abstract word"><br><br>
+                       <label for="myInput3" class="titletext">Select an activity: </label>
+  <select id="myInput3" name="myInput3" oninput="myFunction3()" >
+    <option value="" selected>All</option>
+    <option value="Communities of practice/research practices generally">Communities of practice/research practices generally</option>
+    <option value="Education / capacity building">Education / capacity building</option>
+    <option value="Collaboration">Collaboration</option>
+    <option value="General (any / all stages)">General (any / all stages)</option>
+    <option value="Stakeholder engagement">Stakeholder engagement</option>
+    <option value="Question formulation">Question formulation</option>
+    <option value="Protocol development">Protocol development</option>
+    <option value="Searching / information retrieval">Searching / information retrieval</option>
+    <option value="Document / record management (including deduplication)">Document / record management (including deduplication)</option>
+    <option value="Study selection / screening">Study selection / screening</option>
+    <option value="Quality assessment / critical appraisal">Quality assessment / critical appraisal</option>
+    <option value="Data / meta-data extraction">Data / meta-data extraction</option>
+    <option value="Data wrangling / curating">Data wrangling / curating</option>
+    <option value="Evidence mapping / mapping synthesis">Evidence mapping / mapping synthesis</option>
+    <option value="Quantitative analysis / synthesis (including meta-analysis)">Quantitative analysis / synthesis (including meta-analysis)</option>
+    <option value="Qualitative analysis / synthesis (including text analysis and qualitative synthesis)">Qualitative analysis / synthesis (including text analysis and qualitative synthesis)</option>
+    <option value="Data visualisation">Data visualisation</option>
+    <option value="Report write-up / documentation / reporting">Report write-up / documentation / reporting</option>
+    <option value="Updating / living evidence syntheses">Updating / living evidence syntheses</option>
+    <option value="Communication">Communication</option>
+    <option value="Other">Other</option>
+  </select>
+<br><br>
+<label for="myInput4" class="titletext">Select a category: </label>
+  <select id="myInput4" name="myInput4" oninput="myFunction4()" >
+    <option value="" selected>All</option>
+    <option value="Theoretical framework">Theoretical framework</option>
+    <option value="Structured methodology (e.g. critical appraisal tool or data extraction form)">Structured methodology (e.g. critical appraisal tool or data extraction form)</option>
+    <option value="Method validation study / practical case study">Method validation study / practical case study</option>
+    <option value="Graphical user interface (including Shiny apps)">Graphical user interface (including Shiny apps)</option>
+    <option value="Browser extension">Browser extension</option>
+    <option value="Combination of code (chunks or packages) from multiple sources">Combination of code (chunks or packages) from multiple sources</option>
+    <option value="Code package / library">Code package / library</option>
+    <option value="Code chunk (e.g. single R or javascript function)">Code chunk (e.g. single R or javascript function)</option>
+    <option value="Template (e.g. HTML web page or markdown file)">Template (e.g. HTML web page or markdown file)</option>
+    <option value="Other">Other</option>
+  </select>
+  <br><br>
+  <label for="myInput5" class="titletext">Select a presentation type: </label>
+  <select id="myInput5" name="myInput5" oninput="myFunction5()" >
+    <option value="" selected>All</option>
+    <option value="talk" selected>Talk</option>
+    <option value="workshop" selected>Workshop</option>
+    <option value="session" selected>Full session livestream</option>
+  </select>
+<br><br>
+<table id="table_id" class="table_class">
+	<thead id="thead_id" class="thead_class">
+		<tr>
+<th class="name">Name</th><th class="title_abstract">Title and abstract</th><th class="activity">Activity</th><th class="category">Category</th><th class="year">Year</th><th class="type">Type</th><th class="YouTube">YouTube</th>		</tr>
+	</thead>
+	<tbody id="tbody_id" class="tbody_class">
+		<tr>
+			<td>Haddaway, Neal</td>
+			<td><b>Opening Session livestream</b><br><br></td>
+			<td>Communities of practice/research practices generally; Collaboration</td>
+			<td>Theoretical framework</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/gaIzk9-1L2U" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Haddaway, Neal</td>
+			<td><b>Welcome to ESMARConf2022</b><br><br>This presentation opens the official ESMARConf2022 programme. Learn about ESMARConf's objectives and values, details from this year's funder, Code for Science & Society, and more about our Accessibility Policy and Code of Conduct.</td>
+			<td>Communities of practice/research practices generally</td>
+			<td>Theoretical framework</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/7mP_6yA4oX4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Pigott, Terri</td>
+			<td><b>Keynote presentation: Synthesizing Communities: Improving Evidence Synthesis through Collaboration</b><br><br>We are delighted and honoured to welcome Terri Pigott to give this year's ESMARConf conference opening lecture. In her talk, Terri will reflect on her 30+ years in research on evidence synthesis and discuss the importance of interdisciplinary collaborations to improve the field.</td>
+			<td>Communities of practice/research practices generally; Collaboration</td>
+			<td>Theoretical framework</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/sSVTQdUNkS8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hennessy, Emily</td>
+			<td><b>Special Session 1: Review processes from A to Z (part 1)</b><br><br></td>
+			<td>Study selection / screening; Qualitative analysis / synthesis (including text analysis and qualitative synthesis); Searching / information retrieval; Evidence mapping / mapping synthesis; Data visualisation</td>
+			<td>Method validation study / practical case study; Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/_7yNNrIzcU0" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hunter, Bronwen</td>
+			<td><b>Using state-of-the-art transformer models to automate text classification in R</b><br><br>The utilisation of automated classification tools from the field of Natural Language Processing (NLP) can massively decrease the amount of time required for the article screening stage of evidence synthesis. To achieve high accuracy, models often require huge volumes of ‘gold-standard’ labelled training data, which can be expensive and time-consuming to produce. As a result, ‘transfer learning’, in which NLP models, pre-trained on large corpora, are downloaded and finetuned on a smaller number of hand-labelled texts, is an increasingly popular method for achieving high-performance text classification. The availability of state-of-the-art transformer models via the open source ‘hugging face’ library has also improved the accessibility of this approach. However, materials outlining how to make use of such resources in R are limited.  At ESMARCONF 2022, I will introduce and demonstrate how transfer learning can be carried out in R and seamlessly integrated with data collection from academic databases and internet sources.</td>
+			<td>Study selection / screening; Qualitative analysis / synthesis (including text analysis and qualitative synthesis)</td>
+			<td>Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/f31cTAr12F8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Takola, Elina</td>
+			<td><b>Towards an automated Research Weaving</b><br><br>We here present a systematic study on the concept of ecological niche. Ecological niche has been described in various ways; from habitat to role and from biotope to hypervolume. Although it has many different definitions, it remains one of the most fundamental concepts in Ecology. Our aim is to implement the Research Weaving framework on a large body of literature, relevant to the ecological niche in order to illustrate how this concept evolved since its introduction in the early 20th century.  We analysed over 29,000 publications using systematic maps and bibliometric webs. Our synthesis consisted of 8 components: phylogeny, type/validity, temporal trends, spatial patterns, contents, terms, authors, citations. We used bibliometric analyses, quantitative analyses of publication metadata and text mining algorithms. This integrative presentation of the development of the ecological niche concept provides an overview of how dynamics changed over time. It also allows us to detect knowledge gaps, while presenting a systematic summary of existing knowledge. To our knowledge, this is one of the first projects that implements the research weaving framework using exclusively automated processes.</td>
+			<td>Evidence mapping / mapping synthesis</td>
+			<td>Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/94Fkcm2zjOg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Haddaway, Neal</td>
+			<td><b>citationchaser: a tool for transparent and efficient forwards and backwards citation chasing in systematic searching</b><br><br>Systematic searching aims to find all possibly relevant research records from multiple sources to collate an unbiased and comprehensive set of bibliographic records. Along with bibliographic databases, systematic reviewers use a variety of additional methods to minimise procedural bias, including assessing records that are cited by and that cite a set of articles of known relevance (citation chasing). Citation chasing exploits connections between research articles to identify relevant records for consideration in a review by making use of explicit mentions of one article within another. Citation chasing is a popular supplementary search method because it helps to build on the work of primary research and review authors. It does so by identifying potentially relevant studies that might otherwise not be retrieved by other search methods; for example, because they did not use the review authors’ search terms in the specified combinations in their titles, abstracts or keywords. Here, we describe an open source tool that allows for rapid forward and backward citation chasing. We introduce citationchaser, an R package and Shiny app for conducting forward and backward citation chasing from a starting set of articles. We describe the sources of data, the backend code functionality, and the user interface provided in the Shiny app.</td>
+			<td>Searching / information retrieval</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/pyt2YgPUVfs" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Polanin, Joshua</td>
+			<td><b>An Evidence Gap Map Shiny Application for Effect Size or Summary Level Data</b><br><br>Evidence Gap Maps (EGMs) provide a structured visual framework designed to identify areas where research has been conducted, and where research has not been conducted. Traditional EGMs combine at least two characteristics—e.g., outcome measurement, research design—mapped onto x-axis and y-axis to form a grid. EGMs can be in table, graph, or chart format. The intersections of the axes on the grid, at minimum, contain information on the number of studies conducted for the combination of the levels of the characteristics. We created this Shiny app to ease the construction of EGMs, in the form of a graph. The app allows users to upload their dataset, and use point-and-click options to summarize data for combinations of factors, and then create an EGM using the ggplot2 package in R (Wickham, 2011). We also provide an example dataset for instructional purposes. Further, the app will output R syntax used to create the plot; users can download the syntax and customize the graph if needed.</td>
+			<td>Evidence mapping / mapping synthesis; Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/-4WhXPgUQD4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hennessy, Emily</td>
+			<td><b>Special Session 2: Review processes from A to Z (part 2) livestream</b><br><br></td>
+			<td>Data wrangling/curating; Data / meta-data extraction; Qualitative analysis / synthesis (including text analysis and qualitative synthesis); Updating / living evidence syntheses; Communication</td>
+			<td>Template (e.g. HTML web page or markdown file); Method validation study / practical case study; Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/w9c-EOKKhc4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Zimsen, Steph</td>
+			<td><b>Automating data-cleaning and documentation of extracted data using interactive R-markdown notebooks</b><br><br>At the Institute for Health Metrics and Evaluation, we conduct ~40 systematic reviews each year. In our general process to search > screen > extract > analyze, we found we need an intervening step: cleaning extracted data before analysis. The problem arises from a feature of our workflow: one person extracts the data, while another analyzes. Clean-up falls through the gap as we hand off data. Analysts must then spend time cleaning, though the extractor is far more familiar with the dataset. To work faster with fewer errors, we developed a stepwise cleaning checklist, then wrote code modules to fix common problems. But juggling Excel and R and a checklist still takes time and attention. To streamline further, we are developing a systematic solution: an interactive R-markdown notebook to take in parameters of the specific extraction dataset; clean and validate the data; and return a new cleaned dataset. We are testing with a recent systematic review dataset of ~2800 observations from >150 sources. This semi-automated interactive code has other benefits besides valid, upload-ready analysis data. First, a flexible, parameterized template enables faster work, easily repeated. Also, the code can reproducibly make documentation of cleaning done, or extraction history, or other reports on data, parameters, and results. And critically, an interactive notebook makes sophisticated coding accessible to data extractors, who tend to have less coding experience than research analysts.</td>
+			<td>Data wrangling/curating</td>
+			<td>Template (e.g. HTML web page or markdown file)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/H64Bw6FvnMw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Wong, Charis</td>
+			<td><b>Developing a systematic framework to identify, evaluate and report evidence for drug selection in motor neuron disease clinical trials.</b><br><br>Motor neuron disease (MND) is a rapidly progressive, disabling and incurable disease with an average of time to death between 18-30 months from diagnosis. Despite decades of clinical trials, effective disease modifying treatment options remain limited. Motor Neuron Disease – Systematic Multi-Arm Adaptive Randomisation Trial (MND-SMART;  ClinicalTrials.gov registration number: NCT04302870) is an adaptive platform trial aimed at testing a pipeline of candidate drugs in a timely and efficient way. To inform selection of future candidate drugs to take to trial, we identify, evaluate and report evidence from (i) published literature via Repurposing Living Systematic Review (ReLiSyR-MND), a machine learning assisted, crowdsourced, three-part living systematic review evaluating clinical literature of MND and other neurodegenerative diseases which may share similar pathways, animal in vivo MND studies and in vitro MND studies, (ii) experimental drug screening including high throughput screening of human induced pluripotent stem cell based assays, (iii) pathway and network analysis, (iv) drug and trial databases, and (v) expert opinion. Our workflow implements automation and text mining techniques for evidence synthesis, and uses R shiny to provide interactive, curated living evidence summaries to guide decision making.</td>
+			<td>Data / meta-data extraction; Qualitative analysis / synthesis (including text analysis and qualitative synthesis)</td>
+			<td>Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/jJsL8QVW6og" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Ramirez, Vicente</td>
+			<td><b>Sniffing though the Evidence: Leveraging Shiny to Conduct Meta Analysis on COVID-19 and Smell Loss</b><br><br>Early in the coronavirus pandemic, scientists sought to understand the symptoms associated with COVID-19. Among those most frequently reported was the loss of the sense of taste and smell. To estimate the prevalence of smell loss, we conducted a meta-analysis. However, the dissemination of new literature necessitated that we continue to track and update our analysis. To address this issue, we leveraged the ability of R shiny applications to update and disseminate our analysis. From June 2020 to May 2021, our web-based dashboard provided the public with daily analysis updates, which estimated the prevalence of smell loss. This approach proved to be an effective method of disseminating findings to our field's broader community. While the coronavirus pandemic is an exceptional example of rapid updates to the literature, the framework presented may apply to several other fields and topics.</td>
+			<td>Updating / living evidence syntheses; Communication</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/R5vKhlI3-oY" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Haddaway, Neal</td>
+			<td><b>Special Session 3: Graphical user interfaces livestream</b><br><br></td>
+			<td>Communities of practice/research practices generally; Education / capacity building; Quality assessment / critical appraisal; Quantitative analysis / synthesis (including meta-analysis); Data visualisation; Communication; Collaboration; Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/GzLLdBGWk3s" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Harrer, Mathias</td>
+			<td><b>Doing Meta-Analysis with R: Motivation, Concept and Features of an Open-Source Guide for Beginners</b><br><br>Meta-analytic methods have become an indispensable tool in many research disciplines. Worldwide, students and applied researchers acquire meta-analytic skills to address scientific questions pertinent to their field. Along with its extensions, R now arguably provides the most comprehensive, state-of-the-art toolkit for conducting meta-analyses. For novices, however, this wealth of R-based tools is often difficult to navigate and translate into practice, which may limit the uptake of available infrastructure. The “Doing Meta-Analysis with R” guide is one example of a project aiming to facilitate access to the R meta-analysis universe. It is primarily geared towards individuals without prior knowledge of R, meta-analysis, or both. We present the motivation, teaching concept, and core features of the guide. A brief overview of the technical implementation as an online, open-source resource based on {bookdown}, {shiny} and GitHub is also provided. Lastly, we discuss potential limitations of our approach, point to other user-friendly tools for new meta-analysts, and share general ideas to make the R meta-analysis infrastructure more accessible for everyone.</td>
+			<td>Communities of practice/research practices generally; Education / capacity building</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/b-FJ9GnrXRQ" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Karyotaki, Eirini</td>
+			<td><b>Metapsy: A meta-analytic database and graphical user interface for psychotherapy research synthesis</b><br><br>The number of trials on psychotherapies for depression is very large and quickly growing. Because of this large body of knowledge, it is important that the results of these studies are summarized and integrated in meta-analytic studies. More than a decade ago, we developed a meta-analytic database of these trials which is updated yearly through systematic literature searches. Currently, our database includes more than 800 trials and has been used for numerous systematic reviews and meta-analyses. We developed an open-access website, which includes all the trials of our database and all data we have extracted so far. The prototype of this freely accessible website provides a graphical user interface based on {shiny} to run full meta-analyses, subgroup, risk of bias, and publication bias analyses on sections of studies. We hope that this public database can be used as a resource for researchers, clinicians, and other stakeholders who want to conduct systematic reviews and meta-analyses on psychotherapies for depression. We also discuss future plans to extend the functionality of the website and integrate databases on other mental disorders.</td>
+			<td>Quality assessment / critical appraisal; Quantitative analysis / synthesis (including meta-analysis); Data visualisation; Communication</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/iZFnyPtWkcw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Gasparini, Loretta</td>
+			<td><b>MetaLab: Interactive tools for conducting and exploring community-augmented meta-analyses in developmental psychology</b><br><br>Meta-analyses are costly to conduct, often impossible to reanalyze, and outdated as soon as a new study emerges. How can we lower these hurdles, make data more accessible to researchers, and transform meta-analyses into a living resource? MetaLab (https://metalab.stanford.edu/) is an interactive platform that hosts community-augmented meta-analyses in the field of developmental psychology. On MetaLab, community members can contribute full datasets or update existing meta-analyses. To ensure that new records comply with our format and to make automatic processing possible, we provide a validator using a graphical user interface (GUI). This greatly facilitates the continuous growth of MetaLab and ensures that data contributors can almost instantly benefit from the rich infrastructure we provide. To allow an even broader range of researchers to leverage meta-analytic data, our interactive visualization and power analysis tools allow exploring meta-analytic datasets and planning future experiments using the best evidence available. We will provide a tour of these tools to demonstrate how contributing, updating, and exploring a meta-analysis is greatly facilitated through our GUI.</td>
+			<td>Collaboration; Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/RRsIZeU-s2w" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hair, Kaitlyn</td>
+			<td><b>R Shiny: why turn your R scripts into interactive web applications?</b><br><br>Researchers often want to share their datasets, complex analyses, or tools with others. However, if collaborators or decision makers lack coding expertise, this can be a significant barrier to engagement. Shiny is a package and framework for R users to create interactive online applications, without the need for web development skills.  In this presentation, I will introduce the basic architecture of a Shiny application, highlight use-cases via example applications, and provide some tips for getting started.</td>
+			<td>Education / capacity building; General (any / all stages); Communication</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/sef9DSHK_Wo" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Keenan, Ciara</td>
+			<td><b>Special Session 4: Quantitative synthesis - NMA livestream</b><br><br></td>
+			<td>Quantitative analysis / synthesis (including meta-analysis); Data visualisation; Quality assessment / critical appraisal</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/BF_fa1VQxiw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Metelli, Silvia</td>
+			<td><b>NMAstudio: a fully interactive web-application for producing and visualizing network meta-analyses</b><br><br>Several software tools have been developed in the last years for network meta-analysis (NMA) but presentation and interpretation of findings from large networks of interventions remain challenging. We developed a novel online tool, called ‘NMAstudio’, for facilitating the production and visualization of key NMA outputs in a fully interactive environment. NMAstudio is a Python web-application that provides a direct connection between a customizable network plot and all NMA outputs. The user interacts with the network by clicking one or more nodes-treatments or edges-comparisons. Based on their selection, different outputs and information are displayed: (a) boxplots of effect modifiers assisting the evaluation of transitivity; (b) pairwise or NMA forest plots and bi-dimensional plots if two outcomes are given; (c) league tables coloured by risk of bias or confidence ratings from the CINeMA framework; (d) incoherence tests; (e) comparison-adjusted funnel plots; (f) ranking plots; (g) evolution of the network over time. Pop-up windows with extra information are enabled. Analyses are performed in R using ‘netmeta’ and results are transformed to interactive and downloadable visualizations using reactive Python libraries such as ‘Plotly’ and ‘Dash’. A network of 20 drugs for chronic plaque psoriasis is used to demonstrate NMAstudio in practice. In summary, our application provides a truly interactive and user-friendly tool to display, enhance and communicate the NMA findings.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/C63qKTG6kAw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Chiocchia, Virginia</td>
+			<td><b>The ROB-MEN Shiny app to evaluate risk of bias due to missing evidence in network meta-analysis</b><br><br>We recently proposed a framework to evaluate the impact of reporting bias on the meta-analysis of a network of interventions, which we called ROB-MEN (Risk Of Bias due to Missing Evidence in Network meta-analysis). In this presentation we will show the ROB-MEN Shiny app which we developed to facilitate this risk of bias evaluation process. ROB-MEN first evaluates the risk of bias due to missing evidence for each pairwise comparison separately. This step considers possible bias due to the presence of studies with unavailable results and the potential for unpublished studies. The second step combines the overall judgements about the risk of bias in pairwise comparisons with the percentage contribution of direct comparisons on the network meta-analysis (NMA) estimates, the likelihood of small-study effects, and any bias from unobserved comparisons. Then, a level of “low risk”, “some concerns” or “high risk” of bias due to missing evidence is assigned to each estimate. The ROB-MEN Shiny app runs the required analysis, semi-automates some of the steps and built-in algorithm to assign the overall risk of bias level for the NMA estimates and produces the tool’s output tables. We will present how the ROB-MEN app works using an illustrative example from a published NMA. ROB-MEN is the first tool for assessing the risk of bias due to missing evidence in NMA and is also incorporated in the reporting bias domain of the CINeMA software for evaluating the confidence in the NMA results.</td>
+			<td>Quality assessment / critical appraisal</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/LccPtoFsdS4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Nevill, Clareece</td>
+			<td><b>Development of a Novel Multifaceted Graphical Visualisation for Treatment Ranking within an Interactive Network Meta-Analysis Web Application</b><br><br>Network meta-analysis (NMA) compares the effectiveness of multiple treatments simultaneously. This project aimed to develop novel graphics within MetaInsight (interactive NMA web-app: crsu.shinyapps.io/MetaInsight) to aid assessment of the ‘best’ intervention(s). The most granular results are from Bayesian rank probabilities and can be visualised with (cumulative) rank-o-grams. Summary measures exists, however, simpler measures (e.g. probability best) may be easier to interpret but are often more unstable and don’t encompass the whole analysis. Surface under the cumulative ranking curve (SUCRA) is popular, directly linking with cumulative rank-o-grams. A critical assessment of current literature regarding ranking methodology and visualisation directed the creation of graphics in R using ‘ggplot’ and ‘shiny’. The Litmus Rank-O-Gram presents a cumulative rank-o-gram alongside a ‘litmus strip’ of SUCRA values acting as a key. The Radial SUCRA plot presents SUCRA values for each treatment radially with a network diagram of evidence overlaid. To aid interpretation and facilitate sensitivity analysis, the new graphics are interactive and presented alongside treatment effect and study quality results. Treatment ranking is powerful and should be interpreted cautiously with transparent, all-encompassing visualisations. This interactive tool will be pivotal for improving how researchers and stakeholders use and interpret ranking results.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/cP0_cWOXhUo" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hamza, Tasnim</td>
+			<td><b>crossnma:  A new R package to synthesize cross-design evidence and cross-format data</b><br><br>Network meta-analysis (NMA) is commonly used to compare between interventions simultaneously by synthesising the available evidence. That evidence is obtained either from non-randomized studies (NRS) or randomized controlled trials and is accessible as individual participant data (IPD) or aggregate data (AD). We have developed a new R package, crossnma, which allows us to combine these different pieces of information while accounting for their differences. The package conducts a Bayesian NMA and meta-regression to synthesize cross-design evidence and cross-format data. It runs a range of models with JAGS by generating the code automatically from user’s input. A three-levels hierarchical model is implemented to combine IPD and AD and we also integrate four different models for combining the different study designs (a) ignoring their differences in risk of bias (b) using NRS to construct discounted treatment effect priors (c,d) adjusting for the risk of bias in each study in two different ways. Up to three study- or patient-level covariates can also be included, which may help explaining some of the heterogeneity and inconsistency across trials. TH and GS are supported by the HTx-project. The HTx project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement Nº 825162.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/46qjSMJ0ml0" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Pritchard, Chris</td>
+			<td><b>Special Session 5: Other quantitative synthesis livestream</b><br><br></td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Method validation study / practical case study; Theoretical framework; Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/ieMKKxJxFKY" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Plessen, Constantin Yves</td>
+			<td><b>What if…? A very short primer on conducting multiverse meta-analyses in R</b><br><br>Even though conventional meta-analyses provide an overview of the published literature, they do not consider different paths that could have been taken in selecting or analyzing the data. At times, multiple meta-analyses with overlapping research questions reach different conclusions due to differences in inclusion and exclusion criteria, or data analytical decisions. It is therefore crucial to evaluate the influence such choices might have on the result of each meta-analysis. Was the meta-analytical method and exclusion criteria decisive, or is the same result reached via multiple analytical strategies? What if a meta-analyst would have decided to go a different path—would the same outcome occur? Ensuring that the conclusions of a meta-analysis are not disproportionately influenced by data analytical decisions, a multiverse meta-analysis can provide the entire picture and underpin the robustness of the findings—or lack thereof—by conducting multiple, namely all possible and reasonable meta-analyses at once. Hereby, multiverse meta-analyses provide a research integration like umbrella reviews yet additionally investigate the influence flexibility in data analysis could have on the resulting summary effect size. During the talk I will give insight into this potent method, and run through the multiverse of meta-analyses on the efficacy of psychological treatments for depression as an empirical example.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Theoretical framework</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/qYUwIyRNOHU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Joshi, Megha</td>
+			<td><b>wildmeta: Cluster Wild Bootstrapping for Meta-Analysis</b><br><br>Evidence synthesists are often interested in whether certain features of samples, interventions, or study designs are systematically associated with the strength of intervention effects. In the framework of meta-analysis, such questions can be examined through moderator analyses. In practice, moderator analyses are complicated by the fact that meta-analytic data often include multiple dependent effect sizes per primary study. A common method to handle dependence, robust variance estimation (RVE), leads to excessive false positive results when the number of studies is small. Small-sample corrections for RVE have been proposed but they have low power, especially for multiple-contrast hypothesis tests (e.g., tests for whether average effects are equal across three different types of studies). Joshi, Pustejovsky & Beretvas (2021) examined an alternative method for handling dependence, cluster wild bootstrapping. The paper showed through simulation studies that cluster wild bootstrapping maintained adequate rates of false positive results while providing more power compared to existing small sample correction methods. In this presentation, I will introduce a package, called wildmeta, that implements cluster wild bootstrapping particularly for meta-analysis. The presentation will cover when and why meta-analysts should use cluster wild bootstrapping and, how to use the functions in the package with robumeta and metafor models.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/WzT301yAtdE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Nicol-Harper, Alex</td>
+			<td><b>Using sub-meta-analyses to maintain independence among spatiotemporally-replicated demographic datasets</b><br><br>We use population modelling to inform conservation for the common eider, a well-studied seaduck of the circumpolar Northern Hemisphere. Our models are parameterised by vital rates measuring survival and reproduction, which we collated through lit review and a call for data. We performed precision-weighted meta-analysis (Doncaster & Spake, 2018) for vital rates with >20 independent estimates: adult annual survival, clutch size (number of eggs laid) and hatching success (proportion of eggs producing hatchlings). We excluded estimates without associated sample size, and included variance estimates where provided/calculable, otherwise inputting the imputed mean variance. Random-effects error structure allowed for likely variation in population means across this species’ wide range; however, all I2 values were <1%, suggesting that most between-study variation was due to chance rather than true heterogeneity. In many cases, studies presented multiple estimates for a given vital rate – e.g. over different study areas and/or multiple years. Where appropriate, we conducted sub-meta-analyses to generate single estimates which could be handled equivalently to non-disaggregated estimates from other studies. These decisions align with the suggestions of Mengersen et al. (2013) and Haddaway et al. (2020) for maintaining independence among heterogeneous samples, and our workflow ensured that the overall meta-analysis was conducted on independent replicate observations for each vital rate.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/Umyd9_rFEbc" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Llambrich, Maria</td>
+			<td><b>A new approach for meta-analysis using overall results: Amanida</b><br><br>The combination, analysis and evaluation of different studies which try to answer or solve the same scientific question, also known as a meta-analysis, plays a crucial role in answering relevant clinical relevant questions. Unfortunately, metabolomics studies rarely disclose all the statistical information needed to perform a meta-analysis in a traditional manner. Public meta-analysis tools can only by applied to data with standard deviation or directly to raw data. Currently there is no available methodology to do a meta-analysis based on studies that only disclose overall results. Here we present Amanida as a meta-analysis approach using only the most reported statistical parameters in this field: p-value and fold-change. The p-values are combined via Fisher’s method and fold-changes are combined by averaging, both weighted by the study size (n). The amanida package includes several visualization options: a volcano plot for quantitative results, a vote plot for total regulation behaviors (up/down regulations) for each compound, and a explore plot of the vote-counting results with the number of times a compound is found upregulated or downregulated. In this way, it is very easy to detect discrepancies between studies at a first glance.  Now we have developed a Shiny app to perform meta-analysis using Amanida approach and make it more accessible for the community.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Theoretical framework; Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/bdUqN2-R24g" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Stojanova, Jana</td>
+			<td><b>Special Session 6: Quantitative synthesis with a Bayesian lens livestream</b><br><br></td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/kaaeMCQkhqQ" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Bartoš, František</td>
+			<td><b>Adjusting for Publication Bias with Bayesian Model-Averaging and the RoBMA R Package</b><br><br>Publication bias presents a vital thread to meta-analysis and cumulative science. It can lead to overestimation of effect sizes and overstating the evidence against the null hypothesis. In order to mitigate the impact of publication bias, multiple methods of adjusting for publication bias were developed. However, their performance varies based on the true data generating process, and different methods often lead to conflicting conclusions. We developed a robust Bayesian meta-analysis (RoBMA) framework that uses model-averaging to combine different meta-analytic models based on their relative predictive. In other words, it allows researchers to base the inference proportionally to the degree of how well the different models predicted the data. We implemented the framework in the RoBMA R package. The package allows specification of various meta-analytic publication bias adjustment models, specification of default and informed prior distributions, and provides summaries and visualizations for the combined ensemble.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/SOtjQ1tgSwY" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Röver, Christian</td>
+			<td><b>Using the bayesmeta R package for Bayesian random-effects meta-regression</b><br><br>The bayesmeta R package facilitates Bayesian meta-analysis within the simple normal-normal hierarchical model (NNHM).  Using the same numerical approach, we extended the bayesmeta package to include several covariables instead of only a single "overall mean" parameter.  We demonstrate the use of the package for several meta-regression applications, including modifications of regressor matrix and prior settings to implement model variations.  Possible applications include consideration of continuous covariables, comparison of study subgroups, and network-meta-analysis.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/5rQSNYJIJgc" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Bannach-Brown, Alex</td>
+			<td><b>Special Session 7: Building an evidence ecosystem for tool design livestream</b><br><br></td>
+			<td>Searching / information retrieval; Communities of practice/research practices generally; General (any / all stages)</td>
+			<td>Method validation study / practical case study; Theoretical framework; Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/8lLoNZgItxA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Waffenschmidt, Siw</td>
+			<td><b>Search strategy development at a German Health Technology Assessment agency: our experience with R from an end user perspective</b><br><br>IQWiG is a German health technology assessment (HTA) agency that has been using text mining tools to develop search strategies for bibliographic databases for more than 10 years. Originally we used the package tm in R for this purpose. We will describe the features we used and how we used them; we will also discuss why we have switched to a commercial tool for text analysis in the meantime and why we are currently looking for a new solution. In addition, we will summarize our requirements and explain which functions we think a new tool could have that go beyond simple text analysis.</td>
+			<td>Searching / information retrieval</td>
+			<td>Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/g6agTLcY128" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Riley, Trevor</td>
+			<td><b>The value of accessible packages for stakeholders in government</b><br><br>Federal research groups support information gathering and evidence synthesis for both primary research and policy/decision making. This presentation will discuss the various ways in which research products are used and discuss the value of accessible tools and evidence.</td>
+			<td>Communities of practice/research practices generally; General (any / all stages)</td>
+			<td>Theoretical framework</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/Vk9L3dcX6cA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Grames, Eliza</td>
+			<td><b>Increasing accessibility of evidence synthesis methods through tool development and capacity-building</b><br><br>Building methods and tools is only a first step toward facilitating and supporting evidence synthesis -- improving access for end users is a critical next step in making these methods and tools usable, sustainable and effective. This presentation will discuss how access to the R package litsearchr, used for information retrieval in evidence synthesis, was improved through two approaches: training and curriculum development and the development of a graphical user interface. We'll reflect on considerations for developers and end users in the building and maintenance of open source tools for access and accessibility.</td>
+			<td>General (any / all stages); Searching / information retrieval</td>
+			<td>Theoretical framework; Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/DhfWuW6ld98" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Keenan, Ciara</td>
+			<td><b>Special Session 8: Developing the synthesis community livestream</b><br><br></td>
+			<td>Quantitative analysis / synthesis (including meta-analysis); Education / capacity building; Collaboration</td>
+			<td>Code package / library; Theoretical framework; Method validation study / practical case study; Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/8IiVbgevHe8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Viechtbauer, Wolfgang</td>
+			<td><b>The metadat Package: A Collection of Meta-Analysis Datasets for R</b><br><br>The metadat package is a data package for R that contains a large collection of meta-analysis datasets. Development of the package started at the 2019 Evidence Synthesis Hackathon at UNSW Canberra with a first version of the package released on CRAN on 2021-08-20. As of right now, the package contains 70 datasets from published meta-analyses covering a wide variety of disciplines (e.g., education, psychology, sociology, criminology, social work, medicine, epidemiology, ecology). The datasets are useful for teaching purposes, illustrating and testing meta-analytic methods, and validating published analyses. Aside from providing detailed documentation of all included variables, each dataset is also tagged with one or multiple 'concept terms' that refer to various aspects of a dataset, such as the field/topic of research, the outcome measure used for the analysis, the model(s) used for analyzing the data, and the methods/concepts that can be illustrated with the dataset. The package also comes with detailed instructions and some helper functions for contributing additional datasets to the package.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis); Education / capacity building</td>
+			<td>Code package / library</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/4Mc5dxeqvH4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Lajeunesse, Marc</td>
+			<td><b>Lessons on leveraging large enrollment courses to screen studies for systematic reviews</b><br><br>Here I describe eight semesters of experimentation with various abstract screening tools, including R, HTML, CANVAS, and Adobe, with the aims to (1) improve science literacy among undergraduate students, and (2) leverage large enrollment courses to process and code vast amounts of bibliographic information for systematic reviews. I then discuss the promise of undergraduate participation for screening and classification, but emphase (1) consistent failures of tools, in terms of student accessibility and ability to combine and compare student screening decisions, and (2) my consistent inability to get consistent, high-quality screening outcomes from students.</td>
+			<td>Education / capacity building; Collaboration</td>
+			<td>Theoretical framework; Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/C6IFlRl3rzg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hobby, David</td>
+			<td><b>‘LearnR’ & ‘shiny’ to support the teaching of meta-analysis of data from systematic review of animal studies.</b><br><br>Teaching meta-analysis involves combining theoretical statistical knowledge and applying theoretical aspects in practice. Teaching sessions for non-technical students involving R are often beset with technical problems such as outdated software versions, missing and conflicting dependencies, and a tendency for students to arrive on the session day without having installed required software. This causes the first hour(s) of practical sessions to turn into technical troubleshooting sessions. To circumvent these problems, we have created a self-contained web app using the ‘shiny’ and ‘LearnR’ R packages to demonstrate the capabilities of R in meta-analysis. This app runs on a web browser, without the need for students to run R or install packages on their own devices, thus allowing instructors to focus on teaching rather than technical troubleshooting. Using a dataset and code from a previously published systematic review and meta-analysis of animal studies, students are walked-through steps demonstrating theoretical and mathematical foundations of meta-analysis and ultimately replicate the analysis and results. This app supports our live educational workshops but is also designed to be a stand-alone learning resource. At each step, there are multiple choice questions for students to check their understanding of the material. We have demonstrated the use of existing R packages to generate a user-interface for students to learn meta-analysis in practice.</td>
+			<td>Education / capacity building</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2022</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/LicJYxq87IE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Haddaway, Neal</td>
+			<td><b>Closing session</b><br><br></td>
+			<td>Communities of practice/research practices generally; Collaboration; General (any / all stages)</td>
+			<td>Summary / overview</td>
+			<td>2022</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/8rDuvoHCZ2s" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Viechtbauer, Wolfgang</td>
+			<td><b>Workshop 1: Introduction to meta-analysis in R</b><br><br>We will start by looking at methods for quantifying the results from individual studies included in a meta-analysis in terms of various effect size or outcome measures (e.g., raw or standardized mean differences, ratios of means, risk/odds ratios, risk differences, correlation coefficients). We will then delve into methods for combining the observed outcomes (i.e., via equal- and random-effects models) and for examining whether the outcomes depend on the characteristics of the studies from which they were derived (i.e., via meta-regression and subgrouping). A major problem that may distort the results of a meta-analysis is publication bias (i.e., when the studies included in a meta-analysis are not representative of all the relevant research that has been conducted on a particular topic). Therefore, current methods for detecting and dealing with publication bias will be discussed next. Finally, time permitting, we will look at some advanced methods for meta-analysis to handle more complex data structures that frequently arise in practice, namely when studies contribute multiple effect sizes to the same analysis, leading to dependencies in the data that need to be accounted for (via multilevel/multivariate models and robust variance estimation).</td>
+			<td>Education / capacity building; Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Summary / overview; Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>workshop</td>
+			<td><a href="https://www.wvbauer.com/doku.php/workshop_ma_esmarconf" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Bethel, Alison</td>
+			<td><b>Workshop 2: Searching for studies in meta-analyses and evidence syntheses</b><br><br>This workshop will provide an overview of why searching for studies in a meta-analysis or other evidence synthesis is a vital step that should be carefully planned and conducted. It will highlight methods that can be used to improve comprehensiveness, reduce risk of bias, and increase your working efficiency.</td>
+			<td>Protocol development; Searching / information retrieval; Report write-up / documentation / reporting</td>
+			<td>Summary / overview; Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/dip0sCk3emM" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Grainger, Matthew</td>
+			<td><b>Workshop 3: Collaborative coding and version control - an introduction to Git and GitHub</b><br><br>This workshop will provide walkthroughs, examples and advice on how to use GitHub to support your work in R, whether developing packages or managing projects. This workshop will provide walkthroughs, examples and advice on how to use GitHub to support your work in R, whether developing packages or managing projects.</td>
+			<td>Collaboration; General (any / all stages); Document / record management (including deduplication); Data wrangling/curating</td>
+			<td>Summary / overview; Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/UC0gAOlxVYg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Garside, Ruth</td>
+			<td><b>Workshop 4: The Collaboration for Environmental Evidence and what it can do for you</b><br><br>This workshop focuses on what the Collaboration for Environmental Evidence (CEE), a key non-profit systematic review coordinating body, can provide by way of support to anyone wishing to conduct a robust evidence synthesis in the field of environmental science, conservation, ecology, evolution, etc. The workshop will involve a presentation of the organisation, its role and free services and support, followed by a Q&A.</td>
+			<td>Communities of practice/research practices generally; Education / capacity building; Collaboration; General (any / all stages); Stakeholder engagement; Protocol development; Report write-up / documentation / reporting; Communication</td>
+			<td>Summary / overview; Theoretical framework / proposed process or concept</td>
+			<td>2022</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/HFsGNzZFEJ8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Basu, Arindam</td>
+			<td><b>Workshop 5: Structural Equation modelling</b><br><br>Meta-analysis of trials and observational studies can be conceptualised as mixed effects modelling where fixed-effects meta analyses are special cases of random-effects meta-analyses. Structural equation modelling can be used to conduct meta-analyses  in many ways that can extend the scope of meta-analyses. In this workshop, we will show step by step how to use structural equation modelling for conducting meta-analyses using R with metaSEM, lme4, and OpenMx packages. As an attendee, you will not need any previous experience of using these packages as we will show from start to finish with a set of preconfigured data, and you can later try with your own data sets. In the workshop, the instructor will conduct live coding and attendees will follow suit with questions and answers. All materials will be openly distributed in a github repository and be available before and after the workshop. We will use a hosted Rstudio instance, so please RSVP for this workshop so that accounts can be set up ahead of time.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Summary / overview; Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/z42HHrMRbV8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Westgate, Martin</td>
+			<td><b>Workshop 6: Introduction to writing R functions/packages</b><br><br>This workshop provides walkthroughs, examples and advice on how to go about building R functions and packages, and why you might wish to do so in the first place. It aims to discuss the benefits of using functions and packages to support your work and the work of others, and provides practical advice about when a package might be ready to 'go public'.</td>
+			<td>General (any / all stages); Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Summary / overview; Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2022</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/A5XBh8zAMfo" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>ESMARConf2021 Opening Session livestream</b><br><br>The ESMARConf organising team will open the event and welcome participants.</td>
+			<td>Communities of practice/research practices generally; General (any / all stages)</td>
+			<td>Summary / overview</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/J1R9SYL-zN0" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Matthew Grainger</td>
+			<td><b>Meta-Analysis in R: a thematic analysis and content analysis of meta-analytic R packages</b><br><br>Which packages are available already for Meta-analysis in R and how are they inter-related? Using R functions to develop a dependency network we show that there are currently 95 R packages on CRAN that are focused on meta-analysis and 546 "supporting" packages that underpin functions in the meta-analysis packages. We then use thematic analysis to identify clusters of meta-analysis packages that (based on their description) carry out similar functions.</td>
+			<td>Communities of practice/research practices generally; General (any / all stages)</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/mVv5NGU5N8I" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Vivian Welch</td>
+			<td><b>The Future of evidence synthesis: an insider's perspective</b><br><br>Vivian Welch, Editor in Chief of the Campbell Collaboration, introduces her perspectives on where evidence synthesis developments seem to be headed.</td>
+			<td>Communities of practice/research practices generally; General (any / all stages)</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/Ngi5rHnJ-DM" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>ESMARConf2021 Special Session 1: Automation: text analysis livestream</b><br><br></td>
+			<td>Study selection / screening; Qualitative analysis / synthesis (including text analysis and qualitative synthesis)</td>
+			<td>Combination of code (chunks or packages) from multiple sources; Code package / library; Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/upMLe6_khDk" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Arindam Basu</td>
+			<td><b>Using computational text analysis to filter titles and abstracts of initial search for meta-analysis: case of Quanteda and tidytext</b><br><br>One of the key areas of conducting an evidence synthesis (systematic review and meta analysis) is to screen articles on the basis of titles and abstracts based on pre-specified inclusion and exclusion criteria. This happens following an initial search of the literature, and is usually a manual process where one or more investigators screen each title and abstract for semantic information and keywords to select whether an article on the basis of information presented in the title and abstract can be retained for further processing or removed from the pool. In this presentation, I will demonstrate that using natural language processing tools such as tidytext and quanteda, it is possible to create corpus of texts and use the screening criteria to rapidly identify articles that can be retained for further processing in the context of systematic reviews. The rationale and steps will be demonstrated and the relevant codes will be shared with the audience so that they can work on their own.</td>
+			<td>Study selection / screening</td>
+			<td>Combination of code (chunks or packages) from multiple sources</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/Agg9qCPZJ8s" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Martin Westgate</td>
+			<td><b>An introduction to revtools - R and Shiny App for article screening and topic modelling</b><br><br>There are a large number of R packages that support meta-analysis in R, but comparatively few that support earlier stages of the systematic review process. This is a problem because locating, acquiring and screening scientific information is a time-consuming process that could benefit from improved support in R. The ‘revtools’ package supports manual screening of article titles and abstracts via custom shiny apps. It also allows the user to visualise and screen patterns in article text via topic modelling. In this talk, I will premiere the upcoming version which includes better integration with standard NLP packages (quanteda and stm) and new tools for screening as part of a team. These options will greatly increase the utility of revtools for a range of synthesis-related applications.</td>
+			<td>Study selection / screening; Qualitative analysis / synthesis (including text analysis and qualitative synthesis)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/WMpPCvBeILQ" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Max Callaghan</td>
+			<td><b>Introduction to the concept of robust stopping criteria for using machine learning classifiers for inclusion decisions in evidence syntheses</b><br><br>Active learning for systematic review screening promises to reduce the human effort required to identify relevant documents for a systematic review. Machines and humans work together, with humans providing training data, and the machine optimising the documents that the humans screen. This enables the identification of all relevant documents after viewing only a fraction of the total documents. However, current approaches lack robust stopping criteria, so that reviewers do not know when they have seen all or a certain proportion of relevant documents. This means that such systems are hard to implement in live reviews. This talk introduces a workflow with flexible statistical stopping criteria, which offer real work reductions on the basis of rejecting a hypothesis of having missed a given recall target with a given level of confidence. These criteria and their performance are presented here, along with open source R code to put this into practice.</td>
+			<td>Study selection / screening</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/GssusSa3zeg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Richard Cornford</td>
+			<td><b>Automated identification of articles for ecological datasets</b><br><br>Synthesising data from multiple studies is necessary to understand broad-scale ecological patterns. However, current collation methods can be slow, involving extensive human input. Given rapid and increasing rates of scientific publication, manually identifying data sources amongst hundreds of thousands of articles is a significant challenge. Automated text-classification approaches, implemented via R and Python, can substantially increase the rate at which relevant papers are discovered and we demonstrate these techniques on two global biodiversity indicator databases. The best classifiers distinguish relevant from non-relevant articles with over 90% accuracy when using readily available abstracts and titles. Our results also indicate that, given a modest initial sample of just 100 relevant papers, high performing classifiers could be generated quickly through iteratively updating the training texts based on targeted literature searches. Ongoing work to facilitate the wider application of these methods includes the development of an easy-to-use Shiny App/R package and named-entity-recognition to assist the screening procedure. Additional research will also help to identify/mitigate potential biases that automated classifiers could propagate and evaluate model performance in other domains of evidence synthesis.</td>
+			<td>Study selection / screening</td>
+			<td>Method validation study / practical case study</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/i-ADHETikcE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Luke McGuinness</td>
+			<td><b>ESMARConf2021 Special Session 2: Automation: other livestream</b><br><br></td>
+			<td>Searching / information retrieval; Report write-up / documentation / reporting; Communities of practice/research practices generally; Document / record management (including deduplication)</td>
+			<td>Code package / library; Code chunk (e.g. single R or javascript function); Theoretical framework / proposed process or concept; Code package / library</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/2o4PBUBbWAE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>GSscraper: an R package for scraping search results from Google Scholar</b><br><br>This presentation introduces the GSscraper package, which contains a suite of functions to scrape search results from Google Scholar by using a function that pauses before downloading each page of results to avoid IP blocking. It then scrapes the locally saved files for citation relevant information. These functions help to radically improve transparency in (particularly grey) literature searching, and to support integration of GS search results with other citations in the screening process of a review. In particular, GSscraper allows DOIs to be scraped from the hyperlinks in the search results, facilitating deduplication and crossreferencing with existing citations. Challenges remain in avoiding blocking from GS's bot detection, but options to minimise this risk exist and are in development.</td>
+			<td>Searching / information retrieval</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/unUOUpG8dOg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Wolfgang Viechtbauer</td>
+			<td><b>Automated report generation for meta-analyses using the R package metafor</b><br><br>After running a meta-analysis, users are often inundated with a wide variety of statistics and plots that represent various aspects of the data (e.g., forest and funnel plots, an estimate of the average effect and its uncertainty, the amount of heterogeneity and a test thereof, checks for the presence of potential outliers, tests for the presence of small-study effects / publication bias). One of the challenges is to translate this information into a coherent textual narrative based on current reporting standards. In this talk, I will describe how the R package 'metafor' can be used to automate this process. In particular, for a given meta-analysis, a report can be generated (either as an html, pdf, or docx file) that describes the statistical methods used and includes the various pieces of information in the way they would typically be reported in the results section of a research article.</td>
+			<td>Report write-up / documentation / reporting</td>
+			<td>Code chunk (e.g. single R or javascript function)</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/gAc66E4r-aU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Emily Hennessy</td>
+			<td><b>Promoting synthesis-ready research for immediate and lasting scientific impact</b><br><br>Synthesis of evidence from the totality of relevant research is essential to inform clear directions across scientific disciplines. Many barriers impede comprehensive evidence synthesis, which leads to uncertainty about the generalizability of findings, including: inaccurate terminology titles/abstracts/keywords (hampering literature search efforts); ambiguous reporting of study methods (resulting in inaccurate assessments of study rigor); and poorly reported participant characteristics, outcomes, and key variables (obstructing the calculation of an overall effect or the examination of effect modifiers). To address these issues and improve the reach of primary studies through their inclusion in evidence syntheses, we provide a set of practical guidelines to help scientists prepare synthesis-ready research. We highlight several tools and practices that can aid authors in these efforts, such as creating a repository for each project to host all study-related data files. We also provide step-by-step guidance and software suggestions for standardizing data design and public archiving to facilitate synthesis-ready research.</td>
+			<td>Communities of practice/research practices generally</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/Ti0MsRPIxVs" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Kaitlyn Hair</td>
+			<td><b>Identifying duplicate publications with the ASySD (Automated Systematic Search De-duplication) tool</b><br><br>Researchers who perform systematic searches  across multiple databases often identify duplicate publications. De-duplication can be extremely time-consuming, but failure to remove these records can, in the worst instance, lead to the wrongful inclusion of duplicate data. Endnote is a proprietary software commonly used for this purpose, but its automated duplicate removal has been found to miss many duplicates in practice and it lacks interoperability with other automated evidence synthesis tools. I developed the ASySD (Automated Systematic Search Deduplication) tool as an R function and created a user-friendly web application in R Shiny. Within ASySD, records undergo several formatting steps to enhance matching, text similarity scores are obtained using the RecordLinkage R package, and matching records are passed through a number of filtering steps to maximise specificity. I tested the tool on 5 unseen biomedical systematic search datasets of various sizes (1,845 – 79,880 records) and compared the performance to Endnote and a comparator automated de-duplication tool (Systematic Review Accelerator (SRA)). ASySD identified more duplicates than SRA and Endnote, with a sensitivity of 0.95-0.99 and had a false-positive rate comparable to human performance, with a specificity of 0.94-0.99. For duplicate removal in biomedical systematic reviews, the ASySD tool is a highly sensitive, reliable, and time-saving approach. It is open source and  freely available online.</td>
+			<td>Document / record management (including deduplication)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/WL0VDgxcUNE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Matthew Grainger</td>
+			<td><b>ESMARConf2021 Special Session 3: Quantitative Synthesis livestream</b><br><br></td>
+			<td>Data wrangling / curating; Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Combination of code (chunks or packages) from multiple sources; Theoretical framework / proposed process or concept; Code package / library</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/Q9Nce5pxebY" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>James E. Pustejovsky</td>
+			<td><b>Synthesis of dependent effect sizes: Versatile models through clubSandwich and metafor</b><br><br>Across scientific fields, large meta-analyses often involve dependent effect size estimates. Robust variance estimation (RVE) methods provide a way to include all dependent effect sizes in a single meta-analysis model, even when the nature of the dependence is unknown. RVE uses a working model of the dependence structure, but the two currently available working models (available in the robumeta package) are limited to each describing a single type of dependence. We describe a workflow combining two existing packages, metafor and clubSandwich, that can be used to implement an expanded set of working models, offering benefits in terms of better capturing the types of data structures that occur in practice and improving the efficiency of meta-analytic model estimates.</td>
+			<td>Data wrangling / curating; Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Combination of code (chunks or packages) from multiple sources</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/STVQc5OqpuE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Maya Mathur</td>
+			<td><b>R package PublicationBias: Sensitivity analysis for publication bias</b><br><br>I will discuss the R package PublicationBias, which implements the methods described in this JRSSC paper (https://rss.onlinelibrary.wiley.com/doi/full/10.1111/rssc.12440): We propose sensitivity analyses for publication bias in meta‐analyses. We consider a publication process such that ‘statistically significant’ results are more likely to be published than negative or “non‐significant” results by an unknown ratio, η. Our proposed methods also accommodate some plausible forms of selection based on a study's standard error. Using inverse probability weighting and robust estimation that accommodates non‐normal population effects, small meta‐analyses, and clustering, we develop sensitivity analyses that enable statements such as ‘For publication bias to shift the observed point estimate to the null, “significant” results would need to be at least 30 fold more likely to be published than negative or “non‐significant” results’. Comparable statements can be made regarding shifting to a chosen non‐null value or shifting the confidence interval. To aid interpretation, we describe empirical benchmarks for plausible values of η across disciplines. We show that a worst‐case meta‐analytic point estimate for maximal publication bias under the selection model can be obtained simply by conducting a standard meta‐analysis of only the negative and ‘non‐significant’ studies; this method sometimes indicates that no amount of such publication bias could ‘explain away’ the results.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/YV3EdjKtr7s" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Philip Martin</td>
+			<td><b>Dynamic meta-analysis: Providing evidence to guide local decisions using a global evidence base</b><br><br>Traditionally meta-analysis presents a set of statistical analyses for a large body of literature, providing a global answer. However, people who use evidence often want answers that address relatively local contexts. For example, a meta-analysis of interventions for managing invasive plant species might find that herbicides are highly effective, but a practitioner may wish to know about the effects of glyphosate on Japanese knotweed, an answer they cannot get from the original hypothetical meta-analysis. In this talk, I will introduce our solution to this problem using a new website and Shiny app, metadataset.com. This tool allows users to easily choose outcomes and interventions of interest to them and then filter or weight data before running a bespoke meta-analysis. The aim is to make analyses as relevant to user needs as possible. We call this process ‘dynamic meta-analysis.’ During the talk I will run through an example of the tools use and highlight areas in which we want to engage with the wider evidence synthesis community.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/oqStBL4eKgc" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Wolfgang Viechtbauer</td>
+			<td><b>Selection models for publication bias in meta-analysis</b><br><br>The non-replicability of certain findings in various disciplines has brought further attention to the problem that the published literature - which predominantly forms the evidence basis of research syntheses - may not be representative of all research that has been conducted on a particular topic. More specifically, concerns have been raised for a long time that statistically significant findings are overrepresented in the published literature, a phenomenon usually referred to as publication bias, which in turn can lead to biased conclusions. Various methods have been proposed in the meta-analytic literature for detecting the presence of publication bias, estimating its potential impact, and correcting for it. So-called selection models are among the most sophisticated methods for this purpose, as they attempt to directly model the selection process. If a particular selection model is an adequate approximation for the underlying selection process, then the model provides estimates of the parameters of interest (e.g., the average true effect and the amount of heterogeneity in the true effects) that are 'corrected' for this selection process (i.e., they are estimates of the parameters in the population of studies before any selection has taken place). In this talk, I will briefly describe a variety of models for this purpose and illustrate their application with the metafor package in R.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Theoretical framework / proposed process or concept; Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/ucmOCuyCk-c" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Emily Hennessy</td>
+			<td><b>ESMARConf2021 Special Session 4: Quantitative Synthesis:Network Meta-Analysis livestream</b><br><br></td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library; Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/d4ufa__hGbY" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Guido Schwarzer</td>
+			<td><b>Network meta-analysis with netmeta - Present and Future</b><br><br>Network meta-analysis is a more recent development that provides methods to combine direct and indirect evidence and thus constitutes an extension of pairwise meta-analysis for combining the results from studies that used different comparison groups (Salanti, 2012). R package netmeta (Rücker et al., 2020) implements a frequentist approach for network meta-analysis based on graph-theoretical methods (Rücker, 2012) and is one of the most popular R packages for network meta-analysis. Main objective of netmeta is to provide a comprehensive set of R functions for network meta-analysis in a user-friendly implementation. In this presentation, we will give a brief overview of implemented methods in netmeta as well as planned future extensions. References: Salanti G (2012): Indirect and mixed-treatment comparison, network, or multiple-treatments meta-analysis: many names, many benefits, many concerns for the next generation evidence synthesis tool. Research Synthesis Methods. 3(2):80-97. Rücker G (2012): Network meta-analysis, electrical networks and graph theory. Research Synthesis Methods. 3(4):312-24. Gerta Rücker et al. (2020): netmeta: Network Meta-Analysis using Frequentist Methods. R package version 1.2-1. https://CRAN.R-project.org/package=netmeta</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/CYdUUuGthGI" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>David Phillippo</td>
+			<td><b>multinma: An R package for Bayesian network meta-analysis of individual and aggregate data</b><br><br>Network meta-analysis (NMA) extends pairwise meta-analysis to synthesise evidence on multiple treatments of interest from a connected network of studies. Standard pairwise and network meta-analysis methods combine aggregate data from multiple studies, assuming that any factors that interact with treatment effects (effect modifiers) are balanced across populations. Population adjustment methods aim to relax this assumption by adjusting for differences in effect modifiers. The “gold standard” approach is to analyse individual patient data (IPD) from every study in a meta-regression model; however, such levels of data availability are rare. Multilevel network meta-regression (ML-NMR) is a recent method that generalises NMA to synthesise evidence from a mixture of IPD and aggregate data studies, whilst avoiding aggregation bias and non-collapsibility bias, and can produce estimates relevant to a decision target population. We introduce a new R package, multinma: a suite of tools for performing ML-NMR and NMA with IPD, aggregate data, or mixtures of both, for a range of outcome types. The package includes functions that streamline the setup of NMA and ML-NMR models; perform model fitting and facilitate diagnostics; produce posterior summaries of relative effects, rankings, and absolute predictions; and create flexible graphical outputs that leverage ggplot and ggdist. Models are estimated in a Bayesian framework using the state-of-the art Stan sampler.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/aNpwY-6nPjY" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Thodoros Papakonstantinou</td>
+			<td><b>How to estimate the contribution of each study in network meta-analysis</b><br><br>In network meta-analysis where multiple interventions are synthesized, a study’s contribution to the summary estimate of interest depends not only on its precision, as in pairwise meta-analysis, but also on it position in the network. The contribution matrix contains for for every comparison direct or indirect the contribution of each study by following the flow of information [1]. The calculation of the contribution matrix is now included in the netmeta package. We will demonstrate the use of the function and present the use-case of judging risk of bias in a network. We will also present the open access database accessible through the nmadb package. The application of the contribution matrix to the database resulted in the study of the relative contribution of network paths of different lengths [2]. [1] Papakonstantinou T, Nikolakopoulou A, Rücker G et al. Estimating the contribution of studies in network meta-analysis: paths, flows and streams [version 3; peer review: 2 approved, 1 approved with reservations]. F1000Research 2018, 7:610 (https://doi.org/10.12688/f1000research.14770.3)  [2] Papakonstantinou, T.; Nikolakopoulou, A.; Egger, M. & Salanti, G. In network meta-analysis, most of the information comes from indirect evidence: empirical study. Journal of Clinical Epidemiology, 2020, 124, 42 - 49</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/N6hpfqgxU3Q" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Hugo Pedder</td>
+			<td><b>MBNMAdose: An R package for incorporating dose-response information into Network Meta-Analysis</b><br><br>Network meta-analysis (NMA) is used to synthesise results from multiple treatments where the RCTs form a connected network of treatments. It provides a framework for comparative effectiveness and assessment of consistency between the direct and indirect evidence and is extensively employed in health economic modelling to inform healthcare policy. Multiple doses of different agents in an NMA are typically ""split"" or ""lumped"". Splitting involves modelling different doses of an agent as independent nodes in the network, making no assumptions regarding how they are related, and can results in sparse or even disconnected networks in which NMA is impossible. Lumping assumes different doses have the same efficacy, which can introduce heterogeneity or inconsistency. MBNMAdose is an R package that allows dose-response relationships to be explicitly modelled using Model-Based NMA (MBNMA). As well as avoiding problems arising from lumping/splitting, this modelling framework can improve precision of estimates over those estimated using standard NMA, allow for interpolation/extrapolation of predicted responses based on the dose-response relationship, and allow for the linking of disconnected networks via the dose-response relationship. MBNMAdose provides a suite of functions that make it easy to implement Bayesian MBNMA models, evaluate their suitability given the data, and produce meaningful outputs from the analyses that can be used in decision-making.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/QGjzFul66EU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Michael Seo</td>
+			<td><b>bnma: Bayesian Network Meta-Analysis using 'JAGS'</b><br><br>Recently, there has been many developments of Bayesian network meta-analysis (NMA) packages in R. The general aim of these packages is to provide users who are not familiar with Bayesian NMA a tool that can automate the model. Many of these packages implement the Lu and Ades framework, often referred to as the contrast-based model. Currently, none of these packages incorporate options to utilize baseline risk. We have developed a package named ‘bnma’ which provide most of the implementations in ‘gemtc’ and additionally include options to model baseline risk. Our objectives are (1) to describe a general framework for incorporating baseline risk in Bayesian NMA (2) to illustrate how to implement this framework in ‘bnma’ using a dataset in smoking cessation counseling programs. We implemented two different approaches to model using the baseline risk. ‘bnma’ can model baseline risk as exchangeable and can implement the model commonly referred to as contrast-based model with random study intercept. Furthermore, by including baseline risk as a trial-level covariate, we can potentially reduce both heterogeneity and inconsistency in NMA and improve the overall mode fit. Different assumptions can be made when using baseline risk as a covariate i.e. common, exchangeable, and independent; we show how each can be fitted in ‘bnma’. We compare differences in the analysis with different assumptions on baseline risk.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/jDP1y8wq5FU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Ciara Keenan</td>
+			<td><b>ESMARConf2021 Special Session 5: User Interfaces livestream</b><br><br></td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/kDs3HezTrZ8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Clareece Nevill</td>
+			<td><b>Pilot for an Interactive Living Network Meta-Analysis web application</b><br><br>The Complex Reviews Support Unit in the UK currently host a freely available web application to conduct network meta-analysis (NMA), namely MetaInsight. By using RShiny, MetaInsight has an interactive point-and-click platform and presents visually intuitive results. The application leverages established analysis routines (specifically the ‘netmeta’ and ‘gemtc’ packages in R), whilst requiring no specialist software for the user to install. Through these features, MetaInsight is a powerful tool to support novice NMA users. The current coronavirus-2019 (COVID-19) global pandemic acted as a motivating example to pilot a ‘living’ version of MetaInsight. Subsequently, MetaInsight Covid-19 was developed, a tool for exploration, re-analysis, sensitivity analysis, and interrogation of data from living systematic reviews (LSRs) of COVID-19 treatments over a 5-month pilot period [crsu.shinyapps.io/metainsightcovid]. The functionality within MetaInsight was carried forward and a front page added presenting a summary analysis of the ‘living’ dataset. Data was continuously extracted and updated every week, with the results presented in the app automatically updated. Functionality of MetaInsight Covid-19 will be demonstrated and inner workings explained, the challenges that were faced and overcome will be shared, and the potential for the pilot to be extended to a generic Living MetaInsight for LSRs will be discussed.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/b0Chqk-T2pU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Suzanne Freeman</td>
+			<td><b>MetaDTA: An interactive web-based tool for meta-analysis of diagnostic test accuracy studies</b><br><br>Diagnostic tests are routinely used in healthcare settings to split patients into one of two groups: diseased and non-diseased individuals. The accuracy of diagnostic tests is measured in terms of two outcomes: sensitivity and specificity. The recommended approach for synthesising diagnostic test accuracy (DTA) studies is to use either the bivariate or hierarchical summary receiver operating characteristic (HSROC) models, which account for the correlation between sensitivity and specificity with the results presented either around a mean accuracy point or as a summary receiver operating characteristic (SROC) curve. Software options for fitting bivariate and HSROC models are available in R but require statistical knowledge. We developed MetaDTA, a freely available web-based “point and click” interactive tool, which allows users to input their DTA study data and conduct meta-analyses of DTA studies, including sensitivity analyses. MetaDTA is a Shiny application, which uses the lme4 package for conducting statistical analyses and 22 other R packages to provide an intuitive easy-to-use interface. MetaDTA incorporates novel approaches to visualising SROC curves allowing users to visualise study quality and/or percentage study contributions on the same plot as the individual study estimates and the meta-analysis results. Multiple features can be combined within a single plot. All tables and plots can be downloaded. MetaDTA is available at: https://crsu.shinyapps.io/dta_ma/.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/-FHX3kiAx0w" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>W. Kyle Hamilton</td>
+			<td><b>Jamovi as a Platform for Running a Meta-Analysis</b><br><br>Meta-analysis is a key quantitative component of evidence synthesis. Over the last 40 years the popularity and utility of meta analytic methods has had an enormous impact in biology, ecology, medicine, and the social sciences. Within the fields of medicine and public health it has become an essential method for medical professionals and scholars on summarizing the known effects of medical treatments and interventions. For example, these analyses can combine the results from multiple published studies to evaluate the effectiveness of a drug or investigate the effectiveness of behavior on health. MAJOR is an add on module for the open source Jamovi statistical platform which allows users to produce a publication quality meta-analysis. Both software projects are quickly being adopted for use in classes and workshops by colleges, universities, and medical schools around the world as a replacement for expensive proprietary statistical software. Jamovi uses an intuitive point and click interface which lowers the learning curve required to run analyses. Also, both Jamovi and MAJOR use R to run the analyses and can create reproducible analyses scripts for use in the native R environment. MAJOR combines a variety of packages from the R community, including the popular metafor package to produce fixed, random, and mixed effects meta-analytic models, methods for detecting publication bias, effect size calculators, and generation of publication grade graphics.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/O9NTMSAzDjs" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Martin Westgate</td>
+			<td><b>ESMARConf2021 Special Session 6: Reporting livestream</b><br><br></td>
+			<td>Data visualisation; Report write-up / documentation / reporting</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/3lMxPMIENE0" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>Producing interactive flow diagrams for systematic reviews using the PRISMA2020 package</b><br><br>Systematic review flow charts have great potential as a tool for communication and transparency when used not only as static graphics, but also as interactive ‘site maps’ for reviews. This package makes use of the DiagrammeR R package to develop a customisable flowchart that conforms to PRISMA2020 standards. It allows the user to specify whether previous and other study arms should be included, and allows interactivity to be embedded through the use of mouseover tooltips and hyperlinks on box clicks.The package has the following capabilities: 1) to allow the user to produce systematic review flow charts that conform to the latest update of the PRISMA statement (Page et al. 2020); 2) to adapt this code and publish a free-to-use, web-based tool (a Shiny App) for producing publication-quality flow chart figures without any necessary prior coding experience; 3) to allow users to produce interactive versions of the flow charts that include hyperlinks to specific web pages, files or document sections. This presentation will introduce the R package and ShinyApp and discuss the benefits that such an easily usable tool brings, along with the use of interactivity in such visualisations.</td>
+			<td>Data visualisation; Report write-up / documentation / reporting</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/D9CIm2co2dQ" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Charles Gray</td>
+			<td><b>nmareporting:: a computational waystation for toolchains in network meta-analysis reporting</b><br><br>nmareporting:: is a living package and website that provides a collaborative open resource for practical toolchains to report Bayesian network meta-analyses in R. Included is a suite of R functions from packages such as multinma:: and nmathresh::, as well as providing scope for custom functions for specific use cases. Reporting model results to stakeholders from diverse backgrounds and disciplines by particular bodies’ protocols is a key feature of evidence synthesis. As such the vignettes provided on the associated site give guidance for reporting for different scientific reports, such as Cochrane. Anticipating the adoption of threshold analysis, tools and guidance are provided for practitioners to augment standard sensitivity reporting. nmareporting:: explores a template for collaborative and open development of practical toolchain walkthroughs that address specific scientific protocols. In addition to the intrinsic value for reporting network meta-analyses, nmareporting:: is also a case study in how we can bring together practitioners and stakeholders from different scientific organisations to collaborate on an open, shared tool for evidence synthesis.</td>
+			<td>Data visualisation; Report write-up / documentation / reporting</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/bUkdsBwYaLs" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Luke McGuinness</td>
+			<td><b>ESMARConf2021 Special Session 7: Data Viz livestream</b><br><br></td>
+			<td>Data visualisation; Quality assessment / critical appraisal; Data wrangling / curating</td>
+			<td>Code package / library; Graphical user interface (including Shiny apps); Theoretical framework / proposed process or concepts</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/dxxUcYEv4D8" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Aaron Conway</td>
+			<td><b>Using the flextable package to create graphical summaries of study characteristics in systematic reviews</b><br><br>It is very common in systematic reviews for a summary of the characteristics of each study included in the systematic review to be presented in the form of a table consisting entirely of text. This presentation demonstrates how the flextable package can be used to replace some of the text with graphical features for a study characteristics table. The printing of the table in landscape format in a knitted word document along with the remainder of the report can be achieved using the officedown package. Some features from the flextable package used in the table include: - Use of coloured inline ‘minibar’ images to show the male:female ratio in included studies using flextable::minibar; - Images of flags to indicate the country using flextable::asimage (in addition to being aesthetically more pleasing than presenting this information in text, this feature also reduced the amount of horizontal space required for this column, which is useful for static-print tables that need to be incorporated into Word documents); - Use of inline images so the reader can more quickly and clearly distinguish between studies that included higher numbers of participants (flextable::minibar) and measurements (flextable::lollipop) than if the information was presented in text format. Importantly, using the flextable package to create this table meets the requirements for most journals, which stipulate that tables must be submitted in a word document form.</td>
+			<td>Data visualisation</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/aHAeR97Zllw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Luke McGuinness</td>
+			<td><b>"On the shoulders of giants": advantages and challenges to building on established evidence synthesis packages, using the {robvis} package as a case study</b><br><br>{robvis} is an established R package which allows users to create publication-quality risk-of-bias plots. Recently, it has expanded its scope to allow for new functionality, focusing in particular on better integration with the {metafor} package for meta-analysis. Following a public discussion of the proposed functionality run through GitHub and Twitter, in addition to consultation with the maintainer of the {metafor} package, two new functions were added to {robvis}. The first creates paired risk-of-bias plots, where a ""traffic light""-style risk-of-bias plot is appended onto a standard forest plot so that the risk of bias for each result in the meta-analysis is readily available to the reader. This function builds on the output of the {metafor} forest plot function to create these graphs. In addition, as users frequently wish to stratify their analysis by the level of bias in each included study, a new function which automatically subsets the data by this variable and presents a subgroup meta-analysis for each subgroup has also been developed. This presentation will use the {robvis} package as a case study to demonstrate how collaboration between packages in the evidence synthesis landscape can result in new functionality and increased ease-of-use for end users. It will also highlight the benefit of thinking of the evidence synthesis workflow as a whole when developing and expanding new functionality, rather than seeing packages as standalone silos.</td>
+			<td>Quality assessment / critical appraisal; Data visualisation</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/yJOTTc3y4iw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Alexander Fonseca Martinez</td>
+			<td><b>An Interactive forest plot for visualizing risk of bias assessment</b><br><br>A forest plot is the most common way that research synthesizers use to combine the results of multiple evaluations. As part of a living systematic review, a web application was built using Shiny. As part of this web-app, we developed an interactive forest plot with three novel functionalities: 1) Users can hover over the point estimate square on any study in the forest plot, and the text is displayed of the point estimate and confidence interval for the measure of association. 2) Users can click on the point estimate square on any study, and the risk‐of‐bias judgment is displayed in an interactive table alongside the forest plot. The risk‐of‐bias judgment is displayed as a colored-coded system indicating the level of bias. 3) In the risk of bias table, the user can click on the risk-of-bias judgment for a study, and a pop-up appears which contains the written risk of bias rationale for each domain evaluated. It is possible to visualize multiple associations at once by clicking on multiple point estimate squares. This interactive forest plot relies on the R packages ggplot2, ggiraph and formattable. We will aim to implement a R package to allow users to upload their data, integrate it into projects covering different aspects of the systematic review and meta-analysis such as metaverse, and develop a web app to make the tool accessible even to those without previous knowledge of R.</td>
+			<td>Quality assessment / critical appraisal; Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/q8a8Y9RZ3ZE" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Charles Gray</td>
+			<td><b>Structuring data for systematic review: towards a future of open and interoperable analyses</b><br><br>Most systematic reviews and maps design bespoke data extraction tools. These databases obviously share similarities, for example citation information, study year, location, etc., and there are necessary differences depending on the focus of the review. However, each database uses different conventions related to column names, cell content formatting and structure. Because of the lack of templates across the evidence synthesis community, reviewers often learn the hard way that databases designed for data extraction are often not suitable for immediate visualisation, analysis or sharing. Using R functions we outline an approach to structuring databases, in which data are shared in tables wherein each row denotes an observation and each column a variable, and develop context-agnostic tools to translate databases between different formats for specific uses. This project offers computational workflows for reviewers to develop open syntheses and take a step toward standardisation of systematic review/map databases.</td>
+			<td>Data wrangling / curating; Data visualisation</td>
+			<td>Theoretical framework / proposed process or concepts; Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/HfR7ifhnbLI" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Andrew Feierman</td>
+			<td><b>EviAtlas – tool for producing visuals from evidence synthesis data</b><br><br>Systematic reviews and maps typically involve the production of databases showing the key attributes of the studies included in the review. These databases are a major intellectual contribution that can assist data users and future reviewers alike; but they are typically published as spreadsheets that are difficult to interpret and investigate without specialist knowledge or tools. To address this problem, we created eviatlas in 2018 as an online app to allow users to investigate their own datasets within a free, online portal (https://estech.shinyapps.io/eviatlas/). While useful, however, this tool only allowed reviewers to view their own data, and not to facilitate access by external stakeholders. Further, building the sorts of interactive websites needed to investigate data in this way is beyond the budget or skillset present in most organisations. To address this gap, we have developed a ‘packaged’ version of eviatlas that users can call from within the R statistical environment. This new version expands the functionality of the original by allowing users to build and deploy their own apps, providing open access to their data to external users. Once complete, we envisage that eviatlas will provide an easy way to deploy interactive databases to the web, while allowing advanced users to fully customize the resulting websites by supplying additional information such as markdown, css and image files. In this talk we will provide an introduction to the software and demonstrate how it can enable publication of interactive websites with only a few lines of code.</td>
+			<td>Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/v9TV_uhs2wU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Ciara Keenan</td>
+			<td><b>evimappr an R package for producing interactive bubble plots of evidence</b><br><br>evimappr is an R package designed to help evidence synthesis authors display the volume of evidence across three categorical variables. The package produces bubble plots that separate any quantitative variable (e.g. the number of studies in a review) across an x and y axis and a third dimension (ideally with <c.6 levels). The package allows users to make their plots interactive, enabling tooltips and hyperlinks for each bubble. We give an example to demonstrate using this interactivity to link to a subset of the studies corresponding to a particular bubble in a web-based HTML table.</td>
+			<td>Data visualisation</td>
+			<td>Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/1m2CuN8QRF0" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>ESMARConf2021 Special Session 8: Research Weaving livestream</b><br><br></td>
+			<td>Evidence mapping / mapping synthesis; Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Theoretical framework / proposed process or concept; Method validation study / practical case study; Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/JGEYkRKXIP4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Sarah Young</td>
+			<td><b>What can networks tell us in an evidence and gap map context? Vegetated strips in agricultural fields as a case study</b><br><br>Evidence and gaps maps (EGMs) bring together scattered and siloed knowledge from existing research to develop decision-making tools for evidence-based policy. In addition to the thematic categorization of studies by characteristics relevant to decision-makers, EGMs also often include a basic bibliometric analysis to understand trends in publishing and authorship. In 2019, the concept of 'research weaving' was introduced by Nakagawa and colleagues to describe a more advanced bibliometric analysis including network visualization and text analysis to provide insights into collaboration and citation dynamics in a systematic mapping context. The current work seeks to apply these concepts to a previously published EGM on the role of vegetated strips in agricultural fields. Taking this EGM as a case study, we seek to demonstrate the added value of including analyses of co-authorship, citation and keyword co-occurrence networks in EGMs, including what these analyses can tell us about the social dynamics of research communities that contribute knowledge to this area and shed light on terminology used to describe key concepts, which could aid in the search for additional literature. We hope to provide a clear path forward using existing open source tools in R, and other open platforms like VosViewer, to enable researchers to add new layers of understanding to EGMs that could help drive collaboration and facilitate the evidence synthesis process.</td>
+			<td>Evidence mapping / mapping synthesis</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/WDUbLnACypc" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Tim Alamenciak</td>
+			<td><b>Analyzing Canadian ecological restoration literature with bibliometric analysis and a systematic map</b><br><br>Our presentation will discuss a novel use of bibliometric analysis (using Bibliometrix) paired with a systematic map to characterize and synthesize a broad selection of research. Ecological Restoration Knowledge Synthesis (ERKS) is a nationally-funded knowledge synthesis project that has involved a systematic literature review, interviews and case studies to assess and synthesize the current state of ecological restoration knowledge in Canada. We will demonstrate how we used the Bibliometrix R package to draw conclusions about a selection of 3,013 peer-reviewed journal articles. The analysis from Bibliometrix highlighted key clusters of literature. We then conducted a systematic map on studies that measured the outcomes of ecological interventions. The bibliometric analysis process helped inform the scope of our systematic map by providing insights about the body of literature. The systematic map was conducted using CADIMA to track the exclusions and data extraction. The extracted data was analyzed using R to cluster the results and create heatmaps for specific subject areas. The two approaches taken together allowed us to synthesize the broad sweep of the academic literature.The resulting analysis blends bibliometric analysis with a systematic map, resulting in a methodology that can be used to characterize a wide body of subject-specific literature. Our talk will highlight how these two methods of synthesis work together to highlight gaps in the research landscape.</td>
+			<td>Evidence mapping / mapping synthesis</td>
+			<td>Method validation study / practical case study</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/-u2NPzfwZBw" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Loretta Gasparini</td>
+			<td><b>Introducing metalabR: A package to facilitate living meta-analyses and dynamic meta-analytic visualizations</b><br><br>Developmental psychologists often make statements of the form “babies do X at age Y”. Such summaries can misrepresent a messy and complex evidence base, yet meta-analyses are under-used in the field. To facilitate developmental researchers’ access to current meta-analyses, we created MetaLab (metalab.stanford.edu), a platform for open, dynamic meta-analytic datasets. In 5 years the site has grown to 29 meta-analyses with data from 45,000 infants and children. A key feature is the unique standardized data storage format, which allows a unified framework for analysis and visualization, and facilitates addition of new datapoints to ensure living meta-analyses that give the most up-to-date summary of the body of literature. MetalabR facilitates and standardizes the process of conducting and integrating meta-analyses with the MetaLab platform. Existing key features focus on ensuring adherence to our standardized data format by providing functions for reading, validating, and cleaning new datasets and added datapoints. Furthermore, MetalabR helps access existing MetaLab functionalities for quantitative analysis, building on metafor (Viechtbauer, 2007). In progress are visualization tools for developmental meta-analyses and a report summarizing results of random effects models appropriate for developmental psychology.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis); Data visualisation</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/x4nu6wGqdeg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Ciara Keenan</td>
+			<td><b>ESMARConf2021 Special Session 9: Open Synthesis livestream</b><br><br></td>
+			<td>Communities of practice/research practices generally; General (any / all stages); Quantitative analysis / synthesis (including meta-analysis); Data / meta-data extraction; Document / record management (including deduplication); Education / capacity building; Report write-up / documentation / reporting</td>
+			<td>Theoretical framework / proposed process or concept; Graphical user interface (including Shiny apps); Code package / library; Method validation study / practical case study</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/ICKTBPB2x0E" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>Open Synthesis and R</b><br><br>This presentation will introduce the concept of Open Synthesis (the application of Open Science principles to evidence synthesis), ongoing work by the evidence synthesis community to develop definitions and operationalise the concept, and how R facilitates Open Synthesis practices.</td>
+			<td>Communities of practice/research practices generally; General (any / all stages)</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/a485bqzeY2A" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Tanja Burgard</td>
+			<td><b>PsychOpen CAMA - A platform for open and cumulative meta-analyses in psychology</b><br><br>Typically, meta-analyses are published as printed articles. This practice leads to serious limitations for the re-usability of meta-analytic data. Results of printed meta-analyses can often neither be replicated, nor can the sensitivity of the results to subjective decisions, as the use of statistical models, be examined. Results quickly become outdated and without access to the meta-analytic dataset, the process of meta-analytic data collection starts from scratch. A solution for an infrastructure for continuous updating of meta-analytic evidence is the concept of CAMA (Community-Augmented Meta-Analysis). A CAMA is an open repository for meta-analytic data, that provides a GUI for meta-analytic tools. PsychOpen CAMA serves the field of psychology. The PHP application relies on an OpenCPU server to process requests from the analyses called from the GUI. All functions needed for these analyses are stored in an R package. To ensure interoperability, all data available on the platform follow certain conventions defined in a data template. The results from the operations on the OpenCPU Server are given back as output on the GUI.Meta-analyses published on the platform are accessable and can be augmented continuously by the research community. A first release of the service will be available in early 2021. All meta-analytic functionalities (data exploration, meta-regression, publication bias, power analyses) can already be demonstrated with our test version.</td>
+			<td>Quantitative analysis / synthesis (including meta-analysis)</td>
+			<td>Graphical user interface (including Shiny apps); Code package / library</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/jI62P-HTQqs" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Marc Lajeunesse</td>
+			<td><b>Challenges and lessons for automating data extractions from scientific plots</b><br><br>Here I present challenges to the semi-automation of data extraction from published figures. I first discuss failed implementations with an existing R package METAGEAR, and then focus on new technologies available in R that can help resolve deficiencies. Finally, I end with best practices for scientists to help make published figures more accessible to automated technologies.</td>
+			<td>Data / meta-data extraction</td>
+			<td>Theoretical framework / proposed process or concept; Method validation study / practical case study</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/60312q3ivqg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Thomas Leuchtefeld</td>
+			<td><b>Sysrev - An Open Access Platform for Review</b><br><br>Sysrev is an open access platform for data extraction and review.  It supports FAIR data principles (findable, accessible, interoperable, and reproducible) with an emphasis on interoperability.  Sysrev currently supports three forms of interoperability - a graphql server, an R packages (RSysrev), and a python client (PySysrev).  Sysrev provides a free, and open access platform that can be used by developers as a source of review data or as a platform for supporting new reviews.  In this talk, we'll briefly demonstrate how sysrev can be used to create a named entity recognition data set for genes (sysrev.com/p/3144) and how that data set can be used to create a named entity recognition model with PySysrev.  We will also demonstrate how RSysrev can be used to read open access review data, and how it can be used to generate new data for review. Sysrev is eager to partner with developers who want to improve the way humans and machines work together, we provide a simple open-access platform that lets developers build applications that rely on review data, without needing to recreate a review platform from scratch.</td>
+			<td>General (any / all stages); Document / record management (including deduplication)</td>
+			<td>Graphical user interface (including Shiny apps)</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/8Bqm867i4TU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Alexandra Bannach-Brown</td>
+			<td><b>Research Ecosystems & the Role of R in Effective Evidence Synthesis: building bridges between researchers</b><br><br>Open Research Ecosystems are communities of researchers, evidence synthesists, tool makers, information specialists, research data managers, etc, that collaboratively recognise evidence synthesis as the end goal of research. Research Ecosystems support researchers to design, undertake, and report primary research and evidence synthesis in a way that optimises reuse, translation, and sharing of the data. Research Ecosystems are based on shared open principles, transparency of research methods in evidence synthesis and primary research, code of conduct and sharing of materials for collaboration and communication. This talk will present the concept of open research ecosystems to grow community and improve primary research and evidence synthesis. We present a pilot project idea, funded by Stifterverband (DE), to establish research ecosystems in biomedical translational research. This talk will explore the role of R in developing Research Ecosystems and ways to build bridges between researchers for effective evidence synthesis. Let’s revolutionise the way we synthesise evidence.</td>
+			<td>Communities of practice/research practices generally; Education / capacity building</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/TrwjoVKb3i4" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Matteo Mancini</td>
+			<td><b>A new ERA for meta-analysis: building Executable Research Articles</b><br><br>When we think about meta-analysis and more in general scientific papers, we think about a manuscript in PDF with figures and tables. This format has been almost unchanged for the last twenty years and reduces the reader experience to reading text and looking at charts, without any real chance to understand more about either the methodology or the results. As reproducibility has become a central point in several field, we need to rethink the publication media. I will be sharing some insights from our recent experience in putting together and publishing a meta-analysis in the format of an executable research article (ERA). ERAs not only can embed text and code but also allows to easily execute code on the fly and generate interactive figures. I will discuss potentials and challenges for this new format.</td>
+			<td>Report write-up / documentation / reporting</td>
+			<td>Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>talk</td>
+			<td><a href="https://youtu.be/cRsm62eSq34" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Martin Westgate</td>
+			<td><b>Workshop 1: Writing an R function and developing a package</b><br><br>This short workshop provides walkthroughs, examples and advice on how to go about building R functions and packages, and why you might wish to do so in the first place. It aims to discuss the benefits of using functions and packages to support your work and the work of others, and provides practical advice about when a package might be ready to 'go public'.</td>
+			<td>General (any / all stages); Report write-up / documentation / reporting</td>
+			<td>Workshop; R coding; Package development</td>
+			<td>2021</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/h5-gbq2-NJg" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>Workshop 2: Systematic review coordinating bodies and how they can help you: panel discussion</b><br><br>This workshop and panel discussion focus on what the major systematic review coordinating bodies, the Campbell Collaboration, CEE and Cochrane, can provide by way of support to anyone wishing to conduct a robust evidence synthesis. Each organisation briefly presents itself, followed by a panel discussion with questions from the conference participants.</td>
+			<td>General (any / all stages); Communities of practice/research practices generally; Collaboration; Education / capacity building; Protocol development; Communication; Report write-up / documentation / reporting</td>
+			<td>Workshop; Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/COUOgAiN-mU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Luke McGuinness</td>
+			<td><b>Workshop 3: Introduction to GitHub</b><br><br>This workshop will provide walkthroughs, examples and advice on how to use GitHub to support your work in R, whether developing packages or managing projects.</td>
+			<td>General (any / all stages); Report write-up / documentation / reporting</td>
+			<td>Workshop; GitHub; Version control; R coding; Package development</td>
+			<td>2021</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/BpIsVDmq9NU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Emily Hennessy</td>
+			<td><b>Workshop 4: Collaborating to reduce research waste</b><br><br>This panel discussion focuses on how the evidence synthesis and technology development communities can work to ensure that research waste and redundancy of effort are minimised when tools to support evidence synthesis are developed, and how this can be balanced with innovation and bespoke tool development.</td>
+			<td>General (any / all stages); Communities of practice/research practices generally; Collaboration</td>
+			<td>Workshop; Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>workshop</td>
+			<td><a href="https://youtu.be/L-Zw7ywXcTU" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td>Neal Haddaway</td>
+			<td><b>Closing Session with a panel on Training in R and Evidence Synthesis</b><br><br>This panel discussion covers why evidence synthesis capacity development is vital for rigorous synthesis and evidence-informed decision-making. The panellists discuss the beneficial role that systems like R can play in increasing awareness of and use of robust methods, and possible challenges with Open platforms for training future generations of evidence synthesists.</td>
+			<td>General (any / all stages); Communities of practice/research practices generally; Collaboration; Education / capacity building</td>
+			<td>Workshop; Theoretical framework / proposed process or concept</td>
+			<td>2021</td>
+			<td>session</td>
+			<td><a href="https://youtu.be/tOJVrlvQf_U" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+	</tbody>
+</table>
+<script>
+  function myFunction1() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  document.getElementById("myInput2").value="";
+  document.getElementById("myInput3").value="";
+  document.getElementById("myInput4").value="";
+  document.getElementById("myInput5").value="";
+  input = document.getElementById("myInput1");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+<script>function myFunction2() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  document.getElementById("myInput1").value="";
+  document.getElementById("myInput3").value="";
+  document.getElementById("myInput4").value="";
+  document.getElementById("myInput5").value="";
+  input = document.getElementById("myInput2");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+<script>function myFunction3() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  document.getElementById("myInput1").value="";
+  document.getElementById("myInput2").value="";
+  document.getElementById("myInput4").value="";
+  document.getElementById("myInput5").value="";
+  input = document.getElementById("myInput3");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+<script>function myFunction4() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  document.getElementById("myInput1").value="";
+  document.getElementById("myInput2").value="";
+  document.getElementById("myInput3").value="";
+  document.getElementById("myInput5").value="";
+  input = document.getElementById("myInput4");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+<script>function myFunction5() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  document.getElementById("myInput1").value="";
+  document.getElementById("myInput2").value="";
+  document.getElementById("myInput3").value="";
+  document.getElementById("myInput4").value="";
+  input = document.getElementById("myInput5");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table_id");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+  <script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ 	
+	<meta name="viewport" content="width=device-width, initial-scale=2">
+ 	
+ 	<style type="text/css">
+ .titletext {
+ 	font-weight: 400;
+ 	font-family: sans-serif;
+ 	font-size: 16px;
+ }
+ 
+ table {
+ 	 table-layout: fixed;
+ 	font-weight: 400;
+ 	line-height: 1.5;
+ 	color: #212529;
+ 	font-family: sans-serif;
+ 	margin: 0px;
+ 	padding: 0px;
+ 	box-sizing: border-box;
+ 	margin-bottom: 110px;
+ 	background-color: #fff;
+ 	padding-top: 5px;
+ 	font-size: 14px;
+ 	width: 100%;
+ 	word-wrap: break-word;
+ }
+ 
+ th.title_abstract{width: 40%;}
+ 
+ th.presenter {
+ 	width: 15%;
+}
+ 
+ th.guests {
+ 	width: 30%;
+}
+ 
+ th.YouTube{
+ 	 text-align: center;
+ 	width: 15%;
+}
+ 
+ th {
+ 	position:sticky;
+ 	padding:5px;
+ 	top:0px;
+ 	background:#4fb4a8;
+ 	color:#fff;
+ 	
+ }
+ 
+ td {
+ 	text-align: left;
+ 	padding: 20px;
+ }
+ 
+ tr {
+ 	border-bottom: 1px solid #ddd;
+ }
+ 
+ tr.header, tr:hover {
+ 	background-color: #cfece9;
+ }
+
+#overlay {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    #text2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+    }
+                       </style>
+ 	
+ </head>
+ <body>
+ 	<span id="selection" style="color:#938D69"></span></p>
+
+<table id="table_id" class="table_class">
+	<thead id="thead_id" class="thead_class">
+		<tr>
+<th class="title_abstract">Title and abstract</th><th class="presenter">Presenter</th><th class="YouTube">YouTube</th>		</tr>
+	</thead>
+	<tbody id="tbody_id" class="tbody_class">
+		<tr>
+			<td><b>Workshop 1: Introduction to meta-analysis in R</b><br><br>We will start by looking at methods for quantifying the results from individual studies included in a meta-analysis in terms of various effect size or outcome measures (e.g., raw or standardized mean differences, ratios of means, risk/odds ratios, risk differences, correlation coefficients). We will then delve into methods for combining the observed outcomes (i.e., via equal- and random-effects models) and for examining whether the outcomes depend on the characteristics of the studies from which they were derived (i.e., via meta-regression and subgrouping). A major problem that may distort the results of a meta-analysis is publication bias (i.e., when the studies included in a meta-analysis are not representative of all the relevant research that has been conducted on a particular topic). Therefore, current methods for detecting and dealing with publication bias will be discussed next. Finally, time permitting, we will look at some advanced methods for meta-analysis to handle more complex data structures that frequently arise in practice, namely when studies contribute multiple effect sizes to the same analysis, leading to dependencies in the data that need to be accounted for (via multilevel/multivariate models and robust variance estimation).</td>
+			<td>Viechtbauer, Wolfgang</td>
+			<td><a href="NA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td><b>Workshop 2: Searching for studies in meta-analyses and evidence syntheses</b><br><br>This workshop will provide an overview of why searching for studies in a meta-analysis or other evidence synthesis is a vital step that should be carefully planned and conducted. It will highlight methods that can be used to improve comprehensiveness, reduce risk of bias, and increase your working efficiency.</td>
+			<td>Bethel, Alison</td>
+			<td><a href="NA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td><b>Workshop 3: Collaborative coding and version control - an introduction to Git and GitHub</b><br><br>This workshop will provide walkthroughs, examples and advice on how to use GitHub to support your work in R, whether developing packages or managing projects. This workshop will provide walkthroughs, examples and advice on how to use GitHub to support your work in R, whether developing packages or managing projects.</td>
+			<td>Grainger, Matthew</td>
+			<td><a href="NA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td><b>Workshop 4: The Collaboration for Environmental Evidence and what it can do for you</b><br><br>This workshop focuses on what the Collaboration for Environmental Evidence (CEE), a key non-profit systematic review coordinating body, can provide by way of support to anyone wishing to conduct a robust evidence synthesis in the field of environmental science, conservation, ecology, evolution, etc. The workshop will involve a presentation of the organisation, its role and free services and support, followed by a Q&A.</td>
+			<td>Garside, Ruth</td>
+			<td><a href="NA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td><b>Workshop 5: Structural Equation modelling</b><br><br>Meta-analysis of trials and observational studies can be conceptualised as mixed effects modelling where fixed-effects meta analyses are special cases of random-effects meta-analyses. Structural equation modelling can be used to conduct meta-analyses  in many ways that can extend the scope of meta-analyses. In this workshop, we will show step by step how to use structural equation modelling for conducting meta-analyses using R with metaSEM, lme4, and OpenMx packages. As an attendee, you will not need any previous experience of using these packages as we will show from start to finish with a set of preconfigured data, and you can later try with your own data sets. In the workshop, the instructor will conduct live coding and attendees will follow suit with questions and answers. All materials will be openly distributed in a github repository and be available before and after the workshop. We will use a hosted Rstudio instance, so please RSVP for this workshop so that accounts can be set up ahead of time.</td>
+			<td>Basu, Arindam</td>
+			<td><a href="NA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+		<tr>			<td><b>Workshop 6: Introduction to writing R functions/packages</b><br><br>This workshop provides walkthroughs, examples and advice on how to go about building R functions and packages, and why you might wish to do so in the first place. It aims to discuss the benefits of using functions and packages to support your work and the work of others, and provides practical advice about when a package might be ready to 'go public'.</td>
+			<td>Westgate, Martin</td>
+			<td><a href="NA" target="_blank"><img src="images/youtube.png" width="50"></a>			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+    <script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
+</body>
+</html>
+
